@@ -1,12 +1,6 @@
 ﻿namespace Forums.BuisnessLogic.ForumsAndGroups
 {
-    public class EventLogger
+    public class EventLogger : Logger.Logger
     {
-        private Forum forum;
-
-        public EventLogger(Forum forum)
-        {
-            this.forum = forum;
-        }
-    }
+}
 }
