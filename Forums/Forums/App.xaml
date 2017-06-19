@@ -4,6 +4,60 @@
              xmlns:local="clr-namespace:Forums"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button"
+               x:Key="SignUpButton">
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="Black"
+                                BorderThickness="0"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="LightCyan" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBlock"
+               x:Key="HelloUserText">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+        </Style>
+        <Style TargetType="TextBlock"
+               x:Key="SubForumText">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="FontFamily"
+                    Value="Berlin Sans FB Demi" />
+            <Setter Property="FontSize"
+                    Value="22" />
+            <Setter Property="TextDecorations"
+                    Value="Underline" />
+            <Setter Property="Margin"
+                    Value="0,0,0,20" />
+        </Style>
     </Application.Resources>
 </Application>
