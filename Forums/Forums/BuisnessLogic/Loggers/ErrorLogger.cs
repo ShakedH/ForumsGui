@@ -1,12 +1,8 @@
-﻿namespace Forums.BuisnessLogic.ForumsAndGroups
+﻿using System;
+namespace Forums.BuisnessLogic.ForumsAndGroups
 {
-    public class ErrorLogger
+    public class ErrorLogger: Logger.Logger
     {
-        private Forum forum;
 
-        public ErrorLogger(Forum forum)
-        {
-            this.forum = forum;
-        }
     }
 }
