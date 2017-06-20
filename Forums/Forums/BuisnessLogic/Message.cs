@@ -13,18 +13,18 @@ namespace Forums.BuisnessLogic
         private Discussion m_Discussion;
         private Message m_RepliesTo;
         private List<Message> m_Replies = new List<Message>();
-        private String m_Content;
+        private string m_Content;
         private DateTime m_Published;
-        private String m_MessageID;
+        private string m_MessageID;
 
-        public Message(Discussion discussion, Member publishedBy, String content)
+        public Message(Discussion discussion, Member publishedBy, string content)
         {
             this.m_Discussion = discussion;
             this.m_PublishedBy = publishedBy;
             this.m_Content = content;
         }
 
-        public Message(Message repliesTo, Member publishedBy, String content)
+        public Message(Message repliesTo, Member publishedBy, string content)
         {
             this.m_RepliesTo = repliesTo;
             this.m_PublishedBy = publishedBy;

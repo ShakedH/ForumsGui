@@ -8,9 +8,9 @@ namespace Forums.BuisnessLogic.Rules
 {
     public class SuspensionRule
     {
-        private String m_Content;
+        private string m_Content;
 
-        public SuspensionRule(String content)
+        public SuspensionRule(string content)
         {
             m_Content = content;
         }

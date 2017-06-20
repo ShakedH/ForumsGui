@@ -9,9 +9,9 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         private Forum m_Forum;
         private List<Discussion> m_Discussions = new List<Discussion>();
         private Dictionary<Member, MentorStatus> m_MentorStatus = new Dictionary<Member, MentorStatus>();
-        private String m_Topic;
+        private string m_Topic;
 
-        public SubForum(Forum forum, Member mentor, String topic)
+        public SubForum(Forum forum, Member mentor, string topic)
         {
             throw new NotImplementedException();
         }
@@ -21,7 +21,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Discussion CreateDiscussion(String topic, Member member, String content)
+        public Discussion CreateDiscussion(string topic, Member member, string content)
         {
             throw new NotImplementedException();
         }
@@ -31,17 +31,17 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Discussion GetDiscussion(String discussionID)
+        public Discussion GetDiscussion(string discussionID)
         {
             throw new NotImplementedException();
         }
 
-        public Message AddReplyMessage(Discussion discussion, Member member, String content)
+        public Message AddReplyMessage(Discussion discussion, Member member, string content)
         {
             throw new NotImplementedException();
         }
 
-        public List<Message> GetSFMessages(String searchTerm)
+        public List<Message> GetSFMessages(string searchTerm)
         {
             throw new NotImplementedException();
         }
@@ -51,7 +51,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public void SendNotification(String discussionID)
+        public void SendNotification(string discussionID)
         {
             throw new NotImplementedException();
         }

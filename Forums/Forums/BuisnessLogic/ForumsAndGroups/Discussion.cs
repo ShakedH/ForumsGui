@@ -10,10 +10,10 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
     {
         private SubForum m_SubForum;
         private List<Message> m_Messages;
-        private String m_Topic;
-        private String m_DiscussionID;
+        private string m_Topic;
+        private string m_DiscussionID;
 
-        public Discussion(SubForum subForum, String topic, String openingMessage, Member writtenBy)
+        public Discussion(SubForum subForum, string topic, string openingMessage, Member writtenBy)
         {
             this.m_SubForum = subForum;
             this.m_Topic = topic;
@@ -26,7 +26,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Message AddMessage(Member member, String content)
+        public Message AddMessage(Member member, string content)
         {
             throw new NotImplementedException();
         }
@@ -36,12 +36,12 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Message GetMessage(String messageID)
+        public Message GetMessage(string messageID)
         {
             throw new NotImplementedException();
         }
 
-        public List<Message> GetDisMessages(String searchTerm)
+        public List<Message> GetDisMessages(string searchTerm)
         {
             throw new NotImplementedException();
         }

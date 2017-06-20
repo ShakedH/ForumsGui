@@ -9,6 +9,6 @@ namespace Forums.BuisnessLogic.Logger
 {
     public abstract class Logger
     {
-        public void WriteToLogger(String eventinfo) { }
+        public void WriteToLogger(string eventinfo) { }
      }
 }

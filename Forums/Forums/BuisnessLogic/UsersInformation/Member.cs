@@ -5,9 +5,9 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
 {
     public class Member
     {
-        private String m_UserName;
-        private String m_Password;
-        private Boolean m_IsActive;
+        private string m_UserName;
+        private string m_Password;
+        private bool m_IsActive;
         private Forum m_MemberIn;
         private List<Notification> m_Notifications = new List<Notification>();
         private List<Message> m_Messages = new List<Message>();
@@ -15,7 +15,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         private DateTime m_SuspensionPeriod;
         private List<Member> m_Friends = new List<Member>();
 
-        public Member(String userName, String password, Forum memberIn)
+        public Member(string userName, string password, Forum memberIn)
         {
             m_UserName = userName;
             m_MemberIn = memberIn;

@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -82,7 +82,7 @@
     <Compile Include="BuisnessLogic\UsersInformation\Member.cs" />
     <Compile Include="BuisnessLogic\ForumsAndGroups\SubForum.cs" />
     <Compile Include="BuisnessLogic\UsersInformation\MentorStatus.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

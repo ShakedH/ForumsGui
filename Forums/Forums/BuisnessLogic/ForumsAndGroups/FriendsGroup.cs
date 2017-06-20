@@ -7,14 +7,14 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         private Forum m_Forum;
         private List<Member> m_members = new List<Member>();
         private List<FriendGroupMessage> m_FriendsGroupMessages = new List<FriendGroupMessage>();
-        private String m_GroupID;
+        private string m_GroupID;
 
 
         public FriendsGroup(Forum forum, Member firstMember)
         {
             this.m_Forum = forum;
             if (!m_Forum.IsMember(firstMember))
-                throw new Exception(String.Format("%s does not belong to forum %s", firstMember, forum));
+                throw new Exception(string.Format("%s does not belong to forum %s", firstMember, forum));
             m_members.Add(firstMember);
         }
 

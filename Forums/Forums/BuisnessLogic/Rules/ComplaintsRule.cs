@@ -9,14 +9,14 @@ namespace Forums.BuisnessLogic.Rules
 {
     public class ComplaintsRule
     {
-        private String m_Content;
+        private string m_Content;
 
-        public ComplaintsRule(String content)
+        public ComplaintsRule(string content)
         {
             m_Content = content;
         }
 
-        public Boolean CheckComplaintIsValid(DateTime date, String content, Member supervisor, Member member)
+        public bool CheckComplaintIsValid(DateTime date, string content, Member supervisor, Member member)
         {
             throw new NotImplementedException();
         }

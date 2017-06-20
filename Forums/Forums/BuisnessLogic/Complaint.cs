@@ -7,7 +7,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         private Forum m_Forum;
         private Member m_Author, m_About;
         private DateTime m_DateTime;
-        private String m_Content;
+        private string m_Content;
 
         public Complaint(Member author, Member about, Forum forum)
         {

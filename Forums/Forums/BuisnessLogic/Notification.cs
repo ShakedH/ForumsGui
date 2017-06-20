@@ -16,7 +16,7 @@ namespace Forums.BuisnessLogic
             m_SentTo.Add(sentTo);
         }
 
-        public Message FindMessage(String messageID)
+        public Message FindMessage(string messageID)
         {
             throw new NotImplementedException();
         }

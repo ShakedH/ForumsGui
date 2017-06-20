@@ -11,7 +11,7 @@ namespace Forums.BuisnessLogic
     {
             private FriendsGroup m_FriendsGroup;
             private Member m_Author;
-            private String m_Content;
+            private string m_Content;
 
             public FriendGroupMessage(FriendsGroup friendsGroup, Member author)
             {
