@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace Forums.BuisnessLogic.ForumsAndGroups
+namespace Forums.ViewModel.ForumsAndGroups
 {
     public class FriendsGroup
     {

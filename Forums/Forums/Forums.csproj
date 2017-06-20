@@ -63,25 +63,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BuisnessLogic\Complaint.cs" />
-    <Compile Include="BuisnessLogic\ForumsAndGroups\Discussion.cs" />
-    <Compile Include="BuisnessLogic\FriendGroupMessage.cs" />
-    <Compile Include="BuisnessLogic\Loggers\Logger.cs" />
-    <Compile Include="BuisnessLogic\Message.cs" />
-    <Compile Include="BuisnessLogic\Notification.cs" />
-    <Compile Include="BuisnessLogic\Policy.cs" />
-    <Compile Include="BuisnessLogic\Loggers\ErrorLogger.cs" />
-    <Compile Include="BuisnessLogic\Loggers\EventLogger.cs" />
-    <Compile Include="BuisnessLogic\ForumsAndGroups\Forum.cs" />
-    <Compile Include="BuisnessLogic\ForumsAndGroups\FriendsGroup.cs" />
-    <Compile Include="BuisnessLogic\Rules\ComplaintsRule.cs" />
-    <Compile Include="BuisnessLogic\Rules\ManagementRule.cs" />
-    <Compile Include="BuisnessLogic\Rules\SecurityRule.cs" />
-    <Compile Include="BuisnessLogic\Rules\SuspensionRule.cs" />
-    <Compile Include="BuisnessLogic\UsersInformation\ManagerStatus.cs" />
-    <Compile Include="BuisnessLogic\UsersInformation\Member.cs" />
-    <Compile Include="BuisnessLogic\ForumsAndGroups\SubForum.cs" />
-    <Compile Include="BuisnessLogic\UsersInformation\MentorStatus.cs" />
+    <Compile Include="ViewModel\Complaint.cs" />
+    <Compile Include="ViewModel\ForumsAndGroups\Discussion.cs" />
+    <Compile Include="ViewModel\ForumsAndGroups\Forum.cs" />
+    <Compile Include="ViewModel\ForumsAndGroups\FriendsGroup.cs" />
+    <Compile Include="ViewModel\ForumsAndGroups\SubForum.cs" />
+    <Compile Include="ViewModel\FriendGroupMessage.cs" />
+    <Compile Include="ViewModel\Loggers\ErrorLogger.cs" />
+    <Compile Include="ViewModel\Loggers\EventLogger.cs" />
+    <Compile Include="ViewModel\Loggers\Logger.cs" />
+    <Compile Include="ViewModel\Message.cs" />
+    <Compile Include="ViewModel\Notification.cs" />
+    <Compile Include="ViewModel\Policy.cs" />
+    <Compile Include="ViewModel\Rules\ComplaintsRule.cs" />
+    <Compile Include="ViewModel\Rules\ManagementRule.cs" />
+    <Compile Include="ViewModel\Rules\SecurityRule.cs" />
+    <Compile Include="ViewModel\Rules\SuspensionRule.cs" />
+    <Compile Include="ViewModel\UsersInformation\ManagerStatus.cs" />
+    <Compile Include="ViewModel\UsersInformation\Member.cs" />
+    <Compile Include="ViewModel\UsersInformation\MentorStatus.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,7 +114,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

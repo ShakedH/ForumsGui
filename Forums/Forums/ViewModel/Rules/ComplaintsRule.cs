@@ -1,21 +1,22 @@
-﻿using System;
+﻿using Forums.ViewModel.ForumsAndGroups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.Rules
+namespace Forums.ViewModel.Rules
 {
-    public class SuspensionRule
+    public class ComplaintsRule
     {
         private string m_Content;
 
-        public SuspensionRule(string content)
+        public ComplaintsRule(string content)
         {
             m_Content = content;
         }
 
-        public DateTime getPeriod()
+        public bool CheckComplaintIsValid(DateTime date, string content, Member supervisor, Member member)
         {
             throw new NotImplementedException();
         }

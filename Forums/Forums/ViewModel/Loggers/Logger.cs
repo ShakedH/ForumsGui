@@ -1,14 +1,14 @@
-﻿using Forums.BuisnessLogic.ForumsAndGroups;
+﻿using Forums.ViewModel.ForumsAndGroups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.Logger
+namespace Forums.ViewModel.Logger
 {
     public abstract class Logger
     {
         public void WriteToLogger(string eventinfo) { }
-     }
+    }
 }

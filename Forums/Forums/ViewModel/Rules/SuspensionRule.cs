@@ -4,15 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.Rules
+namespace Forums.ViewModel.Rules
 {
-    public class ManagementRule
+    public class SuspensionRule
     {
         private string m_Content;
 
-        public ManagementRule(string content)
+        public SuspensionRule(string content)
         {
             m_Content = content;
+        }
+
+        public DateTime getPeriod()
+        {
+            throw new NotImplementedException();
         }
     }
 }

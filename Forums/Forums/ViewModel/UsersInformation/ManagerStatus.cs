@@ -1,4 +1,4 @@
-﻿namespace Forums.BuisnessLogic.ForumsAndGroups
+﻿namespace Forums.ViewModel.ForumsAndGroups
 {
     public class ManagerStatus
     {

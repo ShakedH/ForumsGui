@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.ForumsAndGroups
+namespace Forums.ViewModel.ForumsAndGroups
 {
     public class Discussion
     {

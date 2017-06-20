@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Forums.BuisnessLogic.ForumsAndGroups
+namespace Forums.ViewModel.ForumsAndGroups
 {
     public class Complaint
     {

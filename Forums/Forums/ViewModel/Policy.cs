@@ -1,8 +1,8 @@
-﻿using Forums.BuisnessLogic.Rules;
+﻿using Forums.ViewModel.Rules;
 using System;
 using System.Collections.Generic;
 
-namespace Forums.BuisnessLogic.ForumsAndGroups
+namespace Forums.ViewModel.ForumsAndGroups
 {
     public class Policy
     {
