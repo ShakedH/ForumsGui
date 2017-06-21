@@ -14,7 +14,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         }
 
         private string m_Password;
-        private bool m_IsActive;
+        private bool m_IsActive = true;
         private Forum m_MemberIn;
         private List<Notification> m_Notifications = new List<Notification>();
         private List<Message> m_Messages = new List<Message>();
