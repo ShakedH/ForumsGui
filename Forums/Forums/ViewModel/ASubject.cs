@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Forums.ViewModel
 {
@@ -10,7 +6,13 @@ namespace Forums.ViewModel
     {
         protected List<IObserver> m_Observers = new List<IObserver>();
 
-        public abstract void Notify();
+        public void Notify(Notification notification)
+        {
+            foreach (IObserver obs in m_Observers)
+            {
+                obs.Update(notification);
+            }
+        }
 
         public void Subscribe(IObserver observer)
         {
