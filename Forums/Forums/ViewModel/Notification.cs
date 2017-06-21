@@ -9,13 +9,14 @@ namespace Forums.ViewModel
 {
     public class Notification
     {
-        private List<Member> m_SentTo = new List<Member>();
+        private string m_Content;
 
-        public Notification(Member sentTo)
+        public Notification(string content)
         {
-            m_SentTo.Add(sentTo);
+            m_Content = content;
         }
 
+        // TODO BOM: WTF?!
         public Message FindMessage(string messageID)
         {
             throw new NotImplementedException();

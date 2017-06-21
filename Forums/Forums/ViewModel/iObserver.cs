@@ -8,6 +8,6 @@ namespace Forums.ViewModel
 {
     public interface IObserver
     {
-        void Update();
+        void Update(Notification notification);
     }
 }

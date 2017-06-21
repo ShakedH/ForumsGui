@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
-    public class Discussion
+    public class Discussion : ASubject
     {
         private SubForum m_SubForum;
         private List<Message> m_Messages;
@@ -54,6 +54,14 @@ namespace Forums.ViewModel.ForumsAndGroups
         public void SendOpenNotif()
         {
             throw new NotImplementedException();
+        }
+
+        public override void Notify()
+        {
+            string notifContent = "";
+            Notification notification = new Notification(notifContent);
+            foreach (IObserver observer in m_Observers)
+                observer.Update(notification);
         }
     }
 }

@@ -8,13 +8,9 @@ namespace Forums.ViewModel
 {
     public abstract class ASubject
     {
-        private List<IObserver> m_Observers = new List<IObserver>();
+        protected List<IObserver> m_Observers = new List<IObserver>();
 
-        public void Notify()
-        {
-            foreach (IObserver observer in m_Observers)
-                observer.Update();
-        }
+        public abstract void Notify();
 
         public void Subscribe(IObserver observer)
         {
