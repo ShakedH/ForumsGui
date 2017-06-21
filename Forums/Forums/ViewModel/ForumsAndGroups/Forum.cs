@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.ForumsAndGroups
+namespace Forums.ViewModel.ForumsAndGroups
 {
     public class Forum
     {
-        //region Static Methods & Fields
+        #region Static Methods & Fields
         private static List<Forum> AllForums = new List<Forum>();
 
-        public static Forum GetForumByName(String forumName)
+        public static Forum GetForumByName(string forumName)
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         {
             return AllForums;
         }
-        //endregion
+        #endregion
 
         private Dictionary<Member, ManagerStatus> m_ManagerStatus = new Dictionary<Member, ManagerStatus>();
         private List<Member> m_Members = new List<Member>();
@@ -36,15 +36,14 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         private EventLogger m_EventLogger = new EventLogger();
         private ErrorLogger m_ErrorLogger = new ErrorLogger();
         private Policy m_Policy;
+        private string m_Topic;
 
-        private String m_Topic;
-
-        public Forum(Member manager, Policy policy, String topic)
+        public Forum(Member manager, Policy policy, string topic)
         {
             throw new NotImplementedException();
         }
 
-        //region Users methods
+        #region Users methods
         public void AddManager(Member manager)
         {
             if (!m_ManagerStatus.ContainsKey(manager))
@@ -56,44 +55,44 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Member GetMember(String name)
+        public Member GetMember(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Member GetManager(String name)
+        public Member GetManager(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Boolean IsMember(Member member)
+        public bool IsMember(Member member)
         {
             return m_ManagerStatus.ContainsKey(member);
         }
 
-        public void CreateMember(String username, String password)
+        public void CreateMember(string username, string password)
         {
             throw new NotImplementedException();
         }
 
-        public Boolean UserExists(String username)
+        public bool UserExists(string username)
         {
             throw new NotImplementedException();
         }
 
-        public void SuspendMember(String username, DateTime suspensionPeriod)
+        public void SuspendMember(string username, DateTime suspensionPeriod)
         {
             throw new NotImplementedException();
         }
 
-        public Boolean SignUpDetailsValidation(String username, String password)
+        public bool SignUpDetailsValidation(string username, string password)
         {
             throw new NotImplementedException();
         }
-        //endregion
+        #endregion
 
-        //region Sub-Forum methods
-        public SubForum GetSubForum(String topic)
+        #region Sub-Forum methods
+        public SubForum GetSubForum(string topic)
         {
             throw new NotImplementedException();
         }
@@ -103,44 +102,44 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public void CreateSubForum(String topic, String managerName)
+        public void CreateSubForum(string topic, string managerName)
         {
             throw new NotImplementedException();
         }
 
-        public Boolean SubForumExists(String topic)
+        public bool SubForumExists(string topic)
         {
             throw new NotImplementedException();
         }
 
-        public Boolean ValidateSubForumTopic(String topic)
+        public bool ValidateSubForumTopic(string topic)
         {
             throw new NotImplementedException();
         }
-        //endregion
+        #endregion
 
-        public void OpenDiscussion(String subForumTopic, String topic, String content, String writtenBy)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, String content)
+        public void OpenDiscussion(string subForumTopic, string topic, string content, string writtenBy)
         {
             throw new NotImplementedException();
         }
 
-        public Message GetMessageToReply(String subForumTopic, String discussionID, String messageID)
+        public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, string content)
         {
             throw new NotImplementedException();
         }
 
-        //region FriendsGroup methods
-        public List<Member> GetFriendsList(String username)
+        public Message GetMessageToReply(string subForumTopic, string discussionID, string messageID)
         {
             throw new NotImplementedException();
         }
 
-        public void CreateFriendGroup(String username, List<Member> members)
+        #region FriendsGroup methods
+        public List<Member> GetFriendsList(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateFriendGroup(string username, List<Member> members)
         {
             throw new NotImplementedException();
         }
@@ -149,14 +148,14 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
         {
             throw new NotImplementedException();
         }
-        //endregion
+        #endregion
 
-        public void SendNotification(String subForumTopic, String discussionID)
+        public void SendNotification(string subForumTopic, string discussionID)
         {
             throw new NotImplementedException();
         }
 
-        public void CreateNewComplaint(String username, String content, DateTime date, String supervisor)
+        public void CreateNewComplaint(string username, string content, DateTime date, string supervisor)
         {
             throw new NotImplementedException();
         }
@@ -166,17 +165,17 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Boolean CheckComplaintIsValid(DateTime date, String content, Member supervisor, Member member)
+        public bool CheckComplaintIsValid(DateTime date, string content, Member supervisor, Member member)
         {
             throw new NotImplementedException();
         }
 
-        public DateTime GetSuspensionPeriod(String cause)
+        public DateTime GetSuspensionPeriod(string cause)
         {
             throw new NotImplementedException();
         }
 
-        public List<Message> SearchMessages(String searchTerm)
+        public List<Message> SearchMessages(string searchTerm)
         {
             throw new NotImplementedException();
         }

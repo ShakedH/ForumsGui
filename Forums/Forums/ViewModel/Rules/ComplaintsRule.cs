@@ -1,22 +1,22 @@
-﻿using Forums.BuisnessLogic.ForumsAndGroups;
+﻿using Forums.ViewModel.ForumsAndGroups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.Rules
+namespace Forums.ViewModel.Rules
 {
     public class ComplaintsRule
     {
-        private String m_Content;
+        private string m_Content;
 
-        public ComplaintsRule(String content)
+        public ComplaintsRule(string content)
         {
             m_Content = content;
         }
 
-        public Boolean CheckComplaintIsValid(DateTime date, String content, Member supervisor, Member member)
+        public bool CheckComplaintIsValid(DateTime date, string content, Member supervisor, Member member)
         {
             throw new NotImplementedException();
         }

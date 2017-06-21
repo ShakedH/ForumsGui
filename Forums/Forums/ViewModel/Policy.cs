@@ -1,8 +1,8 @@
-﻿using Forums.BuisnessLogic.Rules;
+﻿using Forums.ViewModel.Rules;
 using System;
 using System.Collections.Generic;
 
-namespace Forums.BuisnessLogic.ForumsAndGroups
+namespace Forums.ViewModel.ForumsAndGroups
 {
     public class Policy
     {
@@ -20,7 +20,7 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             m_SuspensionRules.Add(firstSuspensionRule);
         }
 
-        public Boolean ValidatePassword(String password)
+        public bool ValidatePassword(string password)
         {
             throw new NotImplementedException();
         }
@@ -30,22 +30,22 @@ namespace Forums.BuisnessLogic.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        public Boolean CheckComplaintIsValid(DateTime date, String content, Member supervisor, Member member)
+        public bool CheckComplaintIsValid(DateTime date, string content, Member supervisor, Member member)
         {
             throw new NotImplementedException();
         }
 
-        public ComplaintsRule GetComplaintRule(DateTime date, String content)
+        public ComplaintsRule GetComplaintRule(DateTime date, string content)
         {
             throw new NotImplementedException();
         }
 
-        public DateTime GetSuspensionPeriod(String cause)
+        public DateTime GetSuspensionPeriod(string cause)
         {
             throw new NotImplementedException();
         }
 
-        public SuspensionRule GetSuspensioRule(String cause)
+        public SuspensionRule GetSuspensioRule(string cause)
         {
             throw new NotImplementedException();
         }

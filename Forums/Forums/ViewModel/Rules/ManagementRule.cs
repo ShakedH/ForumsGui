@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.Rules
+namespace Forums.ViewModel.Rules
 {
     public class ManagementRule
     {
-        private String m_Content;
+        private string m_Content;
 
-        public ManagementRule(String content)
+        public ManagementRule(string content)
         {
             m_Content = content;
         }

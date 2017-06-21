@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forums.BuisnessLogic.Rules
+namespace Forums.ViewModel.Rules
 {
     public class SuspensionRule
     {
-        private String m_Content;
+        private string m_Content;
 
-        public SuspensionRule(String content)
+        public SuspensionRule(string content)
         {
             m_Content = content;
         }
