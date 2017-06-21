@@ -27,6 +27,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         public Discussion CreateDiscussion(string topic, Member member, string content)
         {
             Discussion discussion = new Discussion(this, topic, content, member);
+            this.m_Discussions.Add(discussion);
             return discussion;
         }
 
