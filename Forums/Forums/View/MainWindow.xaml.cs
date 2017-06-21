@@ -26,9 +26,9 @@ namespace Forums.View
 
         public MainWindow()
         {
-            //this.m_CurrentForum = new Forum(null, null, "Food");
             //this.DataContext = m_CurrentForum;
             InitializeComponent();
+            this.CurrentForum = new Forum(null, null, "Food");
             UsernameTextBlock.Text = "Guest";
         }
 
