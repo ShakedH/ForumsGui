@@ -94,11 +94,17 @@
               Grid.RowSpan="14">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Horizontal"
-                            Name="SubForumsStackPanel">
+                            Name="AllSubForumsStackPanel">
                 </StackPanel>
             </ScrollViewer>
-            <DataGrid Name="DiscussionDataGrid"
-                      Visibility="Hidden" />
+            <DataGrid Name="SubForumDataGrid"
+                      Visibility="Hidden"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserSortColumns="True"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding DiscussionMessages}" />
         </Grid>
     </Grid>
 </Window>
