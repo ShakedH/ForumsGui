@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
-    public class Discussion
+    public class Discussion : ASubject
     {
         private static int index = 1;
 
@@ -81,6 +81,14 @@ namespace Forums.ViewModel.ForumsAndGroups
         public void SendOpenNotif()
         {
             throw new NotImplementedException();
+        }
+
+        public override void Notify()
+        {
+            string notifContent = string.Format("There is a new message in your discussion.\nCheck it out: {0}", m_DiscussionID);
+            Notification notification = new Notification(notifContent);
+            foreach (IObserver observer in m_Observers)
+                observer.Update(notification);
         }
     }
 }
