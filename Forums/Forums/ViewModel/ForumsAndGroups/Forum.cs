@@ -57,12 +57,21 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public Member GetMember(string name)
         {
-            throw new NotImplementedException();
+            foreach (Member member in this.m_Members)
+            {
+                if (member.Name == name)
+                    return member;
+            }
+            throw new Exception(string.Format("Member {0} not found in Forum!", name));
         }
 
         public Member GetManager(string name)
         {
-            throw new NotImplementedException();
+            foreach (Member manager in this.m_ManagerStatus)
+            {
+
+            }
+            return this.m_ManagerStatus[]
         }
 
         public bool IsMember(Member member)
@@ -120,7 +129,12 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void OpenDiscussion(string subForumTopic, string topic, string content, string writtenBy)
         {
-            throw new NotImplementedException();
+            Member member=GetMember(writtenBy);
+            SubForum sf = GetSubForum(subForumTopic);
+            Discussion dis=sf.CreateDiscussion(topic, member, content);
+            Message msg=dis.GetOpenMessage();
+            member.AddMessage(msg);
+
         }
 
         public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, string content)
