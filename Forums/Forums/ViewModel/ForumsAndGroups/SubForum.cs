@@ -27,6 +27,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         public Discussion CreateDiscussion(string topic, Member member, string content)
         {
             Discussion discussion = new Discussion(this, topic, content, member);
+            this.m_Discussions.Add(discussion);
             return discussion;
         }
 
@@ -37,7 +38,8 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public Discussion GetDiscussion(string discussionID)
         {
-            foreach(Discussion dis in this.m_Discussions){
+            foreach (Discussion dis in this.m_Discussions)
+            {
                 if (dis.ID == discussionID)
                 {
                     return dis;
@@ -49,7 +51,7 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public Message AddReplyMessage(Discussion discussion, Member member, string content)
         {
-            return new Message(discussion, member, content);
+            return discussion.AddMessage(member, content);
         }
 
         public List<Message> GetSFMessages(string searchTerm)

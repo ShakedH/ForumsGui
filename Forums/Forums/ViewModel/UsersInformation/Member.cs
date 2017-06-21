@@ -6,6 +6,13 @@ namespace Forums.ViewModel.ForumsAndGroups
     public class Member : ASubject, IObserver
     {
         private string m_UserName;
+
+        public string Name
+        {
+            get { return m_UserName; }
+            set { m_UserName = value; }
+        }
+
         private string m_Password;
         private bool m_IsActive;
         private Forum m_MemberIn;
@@ -24,22 +31,28 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public List<Member> GetListOfFriends()
         {
-            throw new NotImplementedException();
+            return m_Friends;
         }
 
         public void AddMessage(Message message)
         {
-            throw new NotImplementedException();
+            if (!m_Messages.Contains(message))
+            {
+                m_Messages.Add(message);
+                string content = string.Format("Your friend {0} posted new message in {1}", m_UserName);
+                Notification n = new Notification(content);
+                Notify(n);
+            }
         }
 
         public void setSuspensionPeriod(DateTime suspensionPeriod)
         {
-            throw new NotImplementedException();
+            m_SuspensionPeriod = suspensionPeriod;
         }
 
         public void AddFriendGroup(FriendsGroup friendsGroup)
         {
-            throw new NotImplementedException();
+            m_FriendsGroups.Add(friendsGroup);
         }
 
         public void AddComplaintWritten(Complaint complaint)
@@ -57,9 +70,6 @@ namespace Forums.ViewModel.ForumsAndGroups
             this.m_Notifications.Add(notification);
         }
 
-        public override void Notify()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
