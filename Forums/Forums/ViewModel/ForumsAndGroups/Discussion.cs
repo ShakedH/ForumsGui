@@ -58,7 +58,7 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public override void Notify()
         {
-            string notifContent = "A new ";
+            string notifContent = string.Format("There is a new message in your discussion.\nCheck it out: {0}", m_DiscussionID);
             Notification notification = new Notification(notifContent);
             foreach (IObserver observer in m_Observers)
                 observer.Update(notification);
