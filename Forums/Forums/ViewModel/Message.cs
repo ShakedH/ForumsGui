@@ -47,6 +47,8 @@ namespace Forums.ViewModel
             this.m_PublishedBy = publishedBy;
             this.m_Content = content;
             this.m_Discussion = m_RepliesTo.getDiscussion();
+            this.ID = index.ToString();
+            index++;
         }
 
         public void AddMessage(Message responeMessage)
