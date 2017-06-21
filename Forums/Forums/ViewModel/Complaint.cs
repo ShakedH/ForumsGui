@@ -2,6 +2,7 @@
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Complaint
     {
         private Forum m_Forum;

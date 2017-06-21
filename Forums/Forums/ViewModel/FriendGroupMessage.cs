@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel
 {
+    [Serializable]
     public class FriendGroupMessage
     {
         private FriendsGroup m_FriendsGroup;

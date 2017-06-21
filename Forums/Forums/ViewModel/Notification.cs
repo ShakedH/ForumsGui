@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel
 {
+    [Serializable]
     public class Notification
     {
         private string m_Content;

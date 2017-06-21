@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Member : ASubject, IObserver
     {
         private string m_UserName;
