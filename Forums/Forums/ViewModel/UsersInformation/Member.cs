@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
-    public class Member : IObserver
+    public class Member : ASubject, IObserver
     {
         private string m_UserName;
         private string m_Password;
@@ -55,6 +55,11 @@ namespace Forums.ViewModel.ForumsAndGroups
         public void Update(Notification notification)
         {
             this.m_Notifications.Add(notification);
+        }
+
+        public override void Notify()
+        {
+            throw new NotImplementedException();
         }
     }
 }

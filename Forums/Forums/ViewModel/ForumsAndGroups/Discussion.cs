@@ -58,7 +58,7 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public override void Notify()
         {
-            string notifContent = "";
+            string notifContent = "A new ";
             Notification notification = new Notification(notifContent);
             foreach (IObserver observer in m_Observers)
                 observer.Update(notification);
