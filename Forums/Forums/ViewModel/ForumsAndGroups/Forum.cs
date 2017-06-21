@@ -67,11 +67,14 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public Member GetManager(string name)
         {
-            foreach (Member manager in this.m_ManagerStatus)
+            foreach (Member manager in this.m_ManagerStatus.Keys)
             {
-
+                if (manager.Name == name)
+                {
+                    return manager;
+                }
             }
-            return this.m_ManagerStatus[]
+            throw new Exception(string.Format("Manager {0} not found in Forum!", name));
         }
 
         public bool IsMember(Member member)
@@ -81,7 +84,8 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void CreateMember(string username, string password)
         {
-            throw new NotImplementedException();
+            Member member = new Member(username, password, this);
+            AddMember(member);
         }
 
         public bool UserExists(string username)
@@ -113,7 +117,9 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void CreateSubForum(string topic, string managerName)
         {
-            throw new NotImplementedException();
+            Member manager = GetManager(managerName);
+            SubForum subforum = new SubForum(this, manager, topic);
+            AddSubForum(subforum);
         }
 
         public bool SubForumExists(string topic)
@@ -139,7 +145,9 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, string content)
         {
-            throw new NotImplementedException();
+            Message replyMsg=subForum.AddReplyMessage(discussion, member, content);
+            member.AddMessage(replyMsg);
+            message.AddMessage(replyMsg);
         }
 
         public Message GetMessageToReply(string subForumTopic, string discussionID, string messageID)
