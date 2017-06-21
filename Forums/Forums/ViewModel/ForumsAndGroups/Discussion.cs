@@ -70,17 +70,21 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public List<Message> GetDisMessages(string searchTerm)
         {
+            // Related to search - not needed
             throw new NotImplementedException();
         }
 
         public void AddToDMsgs(Message message)
         {
+            // Related to search - not needed
             throw new NotImplementedException();
         }
 
         public void SendOpenNotif()
         {
-            throw new NotImplementedException();
+            // Doesn't match the Sequence Diagrams in order to fit with Observer Desing Pattern
+            // ToDo delete this?
+            Notify();
         }
 
         public override void Notify()
