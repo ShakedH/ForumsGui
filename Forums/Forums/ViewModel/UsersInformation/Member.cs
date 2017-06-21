@@ -13,6 +13,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             set { m_UserName = value; }
         }
 
+
         private string m_Password;
         private bool m_IsActive;
         private Forum m_MemberIn;
@@ -27,6 +28,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             m_UserName = userName;
             m_MemberIn = memberIn;
             m_Password = password;
+            m_IsActive = true;
         }
 
         public List<Member> GetListOfFriends()
@@ -70,13 +72,12 @@ namespace Forums.ViewModel.ForumsAndGroups
             this.m_Notifications.Add(notification);
         }
 
-        public Boolean equals(Member m)
+        public bool equals(Member m)
         {
             if (m_UserName == m.Name)
                 return true;
-            else
-                return false;
 
+            return false;
         }
 
     }
