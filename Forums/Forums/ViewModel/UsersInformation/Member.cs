@@ -6,6 +6,13 @@ namespace Forums.ViewModel.ForumsAndGroups
     public class Member : ASubject, IObserver
     {
         private string m_UserName;
+
+        public string Name
+        {
+            get { return m_UserName; }
+            set { m_UserName = value; }
+        }
+
         private string m_Password;
         private bool m_IsActive;
         private Forum m_MemberIn;
