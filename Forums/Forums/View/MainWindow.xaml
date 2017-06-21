@@ -104,7 +104,6 @@
                       CanUserDeleteRows="False"
                       CanUserSortColumns="True"
                       SelectionMode="Single"
-                      AutoGeneratingColumn="OnAutoGeneratingColumn"
                       ItemsSource="{Binding DiscussionMessages}" />
         </Grid>
     </Grid>
