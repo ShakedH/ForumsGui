@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Policy
     {
         private List<ManagementRule> m_ManagementRules = new List<ManagementRule>();

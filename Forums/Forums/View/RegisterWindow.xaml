@@ -1,0 +1,64 @@
+﻿<Window x:Class="Forums.View.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Forums.View"
+        mc:Ignorable="d"
+        Title="Forum SignUp"
+        Height="300"
+        Width="300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Food Forum - Sign Up"
+                   Grid.Row="1"
+                   Grid.Column="3"
+                   Grid.ColumnSpan="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontWeight="SemiBold" />
+        <DockPanel Grid.Column="1"
+                   Grid.Row="3"
+                   Grid.ColumnSpan="7"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Username: " />
+            <TextBox Name="UsernameTextBox" />
+        </DockPanel>
+        <DockPanel Grid.Column="1"
+                   Grid.Row="5"
+                   Grid.ColumnSpan="7"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Password: " />
+            <PasswordBox Name="PasswordTextBox" />
+        </DockPanel>
+        <Button Content="Sign Me Up!"
+                Grid.Column="3"
+                Grid.Row="7"
+                Grid.ColumnSpan="4"
+                Click="SignUp_Click" />
+    </Grid>
+</Window>

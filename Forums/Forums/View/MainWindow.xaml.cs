@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forums.ViewModel.ForumsAndGroups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,26 @@ namespace Forums.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Forum m_CurrentForum
+        {
+            get;
+            private set;
+        }
+
         public MainWindow()
         {
-            InitializeComponent();
+            //this.m_CurrentForum = new Forum(null, null, "Food");
+            //this.DataContext = m_CurrentForum;
+        }
+
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            new RegisterWindow(this).ShowDialog();
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

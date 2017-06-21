@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Member : ASubject, IObserver
     {
         private string m_UserName;
@@ -12,6 +13,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             get { return m_UserName; }
             set { m_UserName = value; }
         }
+
 
         private string m_Password;
         private bool m_IsActive = true;
@@ -27,6 +29,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             m_UserName = userName;
             m_MemberIn = memberIn;
             m_Password = password;
+            m_IsActive = true;
         }
 
         public List<Member> GetListOfFriends()
@@ -70,13 +73,12 @@ namespace Forums.ViewModel.ForumsAndGroups
             this.m_Notifications.Add(notification);
         }
 
-        public Boolean equals(Member m)
+        public bool equals(Member m)
         {
             if (m_UserName == m.Name)
                 return true;
-            else
-                return false;
 
+            return false;
         }
 
     }
