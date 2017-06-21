@@ -32,7 +32,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             if (!m_Messages.Contains(message))
             {
                 m_Messages.Add(message);
-                string content = string.Format("Your friend {0} posted new message in {1}", m_UserName);
+                string content = string.Format("Your friend {0} posted new message in Discussion with id: {1}", m_UserName, message.getDiscussion().ID);
                 Notification n = new Notification(content);
                 Notify(n);
             }

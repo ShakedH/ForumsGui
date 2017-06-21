@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
@@ -85,15 +82,10 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             // Doesn't match the Sequence Diagrams in order to fit with Observer Desing Pattern
             // ToDo delete this?
-            Notify();
-        }
-
-        public override void Notify()
-        {
             string notifContent = string.Format("There is a new message in your discussion.\nCheck it out: {0}", m_DiscussionID);
             Notification notification = new Notification(notifContent);
-            foreach (IObserver observer in m_Observers)
-                observer.Update(notification);
+            Notify(notification);
         }
+
     }
 }
