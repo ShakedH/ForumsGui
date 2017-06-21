@@ -39,9 +39,9 @@ namespace Forums.ViewModel.ForumsAndGroups
             if (!m_Messages.Contains(message))
             {
                 m_Messages.Add(message);
-                string content = string.Format("Your friend {0} posted new message in {1}", m_UserName);
-                Notification n = new Notification(content);
-                Notify(n);
+                string content = string.Format("Your friend {0} posted new message in Discussion with id: {1}", m_UserName, message.getDiscussion().ID);
+                Notification notification = new Notification(content);
+                Notify(notification);
             }
         }
 
@@ -70,6 +70,14 @@ namespace Forums.ViewModel.ForumsAndGroups
             this.m_Notifications.Add(notification);
         }
 
+        public Boolean equals(Member m)
+        {
+            if (m_UserName == m.Name)
+                return true;
+            else
+                return false;
+
+        }
 
     }
 }
