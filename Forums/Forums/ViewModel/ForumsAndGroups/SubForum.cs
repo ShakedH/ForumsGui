@@ -13,32 +13,43 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public SubForum(Forum forum, Member mentor, string topic)
         {
-            throw new NotImplementedException();
+            this.m_Forum = forum;
+            this.m_Topic = topic;
+            this.AddMentor(mentor, new MentorStatus(mentor, this));
+
         }
 
         public void AddMentor(Member mentor, MentorStatus mentorStatus)
         {
-            throw new NotImplementedException();
+            this.m_MentorStatus.Add(mentor, mentorStatus);
         }
 
         public Discussion CreateDiscussion(string topic, Member member, string content)
         {
-            throw new NotImplementedException();
+            Discussion discussion = new Discussion(this, topic, content, member);
+            return discussion;
         }
 
         public void AddDiscussion(Discussion discussion)
         {
-            throw new NotImplementedException();
+            this.m_Discussions.Add(discussion);
         }
 
         public Discussion GetDiscussion(string discussionID)
         {
-            throw new NotImplementedException();
+            foreach(Discussion dis in this.m_Discussions){
+                if (dis.ID == discussionID)
+                {
+                    return dis;
+                }
+
+            }
+            return null;
         }
 
         public Message AddReplyMessage(Discussion discussion, Member member, string content)
         {
-            throw new NotImplementedException();
+            return new Message(discussion, member, content);
         }
 
         public List<Message> GetSFMessages(string searchTerm)

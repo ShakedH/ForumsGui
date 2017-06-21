@@ -53,12 +53,12 @@ namespace Forums.ViewModel
 
         public void AddMessage(Message responeMessage)
         {
-            throw new NotImplementedException();
+            this.m_Replies.Add(responeMessage);
         }
 
         public Member GetPublisher()
         {
-            throw new NotImplementedException();
+            return m_PublishedBy;
         }
 
         public Discussion getDiscussion()
