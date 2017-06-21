@@ -42,7 +42,6 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             if (message != null && !m_Messages.Contains(message))
                 m_Messages.Add(message);
-            m_Messages[0].AddMessage(message);
         }
 
         public Message AddMessage(Member member, string content)
