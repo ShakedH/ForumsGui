@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
-    public class Discussion
+    public class Discussion 
     {
         private SubForum m_SubForum;
         private List<Message> m_Messages;
@@ -22,7 +22,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         }
 
         public void AddMessage(Message message)
-        {
+        {   
             throw new NotImplementedException();
         }
 
