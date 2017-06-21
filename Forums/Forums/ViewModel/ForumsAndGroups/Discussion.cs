@@ -45,6 +45,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             Message msg = new Message(this, member, content);
             AddMessage(msg);
+            SendOpenNotif();
             return msg;
         }
 

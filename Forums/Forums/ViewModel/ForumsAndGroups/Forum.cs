@@ -90,7 +90,12 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public bool UserExists(string username)
         {
-            throw new NotImplementedException();
+            foreach (Member member in m_Members)
+            {
+                if (member.Name == username)
+                    return true;
+            }
+            return false;
         }
 
         public void SuspendMember(string username, DateTime suspensionPeriod)
@@ -100,7 +105,7 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public bool SignUpDetailsValidation(string username, string password)
         {
-            throw new NotImplementedException();
+            return !UserExists(username) /*&& m_Policy.ValidatePassword(password)*/;
         }
         #endregion
 
@@ -135,17 +140,17 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void OpenDiscussion(string subForumTopic, string topic, string content, string writtenBy)
         {
-            Member member=GetMember(writtenBy);
+            Member member = GetMember(writtenBy);
             SubForum sf = GetSubForum(subForumTopic);
-            Discussion dis=sf.CreateDiscussion(topic, member, content);
-            Message msg=dis.GetOpenMessage();
+            Discussion dis = sf.CreateDiscussion(topic, member, content);
+            Message msg = dis.GetOpenMessage();
             member.AddMessage(msg);
 
         }
 
         public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, string content)
         {
-            Message replyMsg=subForum.AddReplyMessage(discussion, member, content);
+            Message replyMsg = subForum.AddReplyMessage(discussion, member, content);
             member.AddMessage(replyMsg);
             message.AddMessage(replyMsg);
         }
