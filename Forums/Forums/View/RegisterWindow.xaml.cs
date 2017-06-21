@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forums.ViewModel.ForumsAndGroups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ using System.Windows.Shapes;
 namespace Forums.View
 {
     /// <summary>
-    /// Interaction logic for RegisterForm.xaml
+    /// Interaction logic for RegisterWindow.xaml
     /// </summary>
     public partial class RegisterWindow : Window
     {
@@ -33,7 +34,9 @@ namespace Forums.View
             string password = PasswordTextBox.Password;
             try
             {
-                this.m_MainWindow.m_CurrentForum.CreateMember(username, password);
+                this.m_MainWindow.CurrentForum.CreateMember(username, password);
+                this.m_MainWindow.CurrentMember = new Member(username, password, this.m_MainWindow.CurrentForum);
+                this.m_MainWindow.UsernameTextBlock.Text = this.m_MainWindow.CurrentMember.Name;
             }
             catch (Exception)
             {

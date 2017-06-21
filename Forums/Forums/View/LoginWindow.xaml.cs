@@ -27,18 +27,19 @@ namespace Forums.View
             this.m_MainWindow = mainWindow;
         }
 
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameTextBox.Text;
             string password = PasswordTextBox.Password;
-            try
-            {
-                this.m_MainWindow.m_CurrentForum.CreateMember(username, password);
-            }
-            catch (Exception)
-            {
-                System.Windows.Forms.MessageBox.Show("Sorry! Username already exists.\nTry a different one");
-            }
+            //if (this.m_MainWindow.CurrentForum.)
+            //try
+            //{
+            //    this.m_MainWindow.CurrentForum.CreateMember(username, password);
+            //}
+            //catch (Exception)
+            //{
+            //    System.Windows.Forms.MessageBox.Show("Sorry! Username already exists.\nTry a different one");
+            //}
         }
     }
 }

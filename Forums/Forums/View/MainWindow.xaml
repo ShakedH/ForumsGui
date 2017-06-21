@@ -81,12 +81,13 @@
         <TextBlock Text="Hello, "
                    Grid.Column="2"
                    Grid.Row="1"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Right"
                    Style="{StaticResource HelloUserText}" />
-        <TextBlock Grid.Column="3"
+        <TextBlock Name="UsernameTextBlock"
+                   Grid.Column="3"
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
-                   Text="{Binding UserName}"
+                   Text=""
                    Style="{StaticResource HelloUserText}" />
         <Grid Grid.Column="4"
               Grid.Row="6"

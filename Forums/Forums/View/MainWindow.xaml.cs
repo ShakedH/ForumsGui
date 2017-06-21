@@ -21,16 +21,15 @@ namespace Forums.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Forum m_CurrentForum
-        {
-            get;
-            private set;
-        }
+        public Forum CurrentForum { get; set; }
+        public Member CurrentMember { get; set; }
 
         public MainWindow()
         {
             //this.m_CurrentForum = new Forum(null, null, "Food");
             //this.DataContext = m_CurrentForum;
+            InitializeComponent();
+            UsernameTextBlock.Text = "Guest";
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +39,8 @@ namespace Forums.View
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new LoginWindow(this).ShowDialog();
+            UsernameTextBlock.Text = this.CurrentMember.Name;
         }
     }
 }
