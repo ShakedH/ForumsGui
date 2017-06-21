@@ -1,5 +1,6 @@
 ﻿namespace Forums.ViewModel.ForumsAndGroups
 {
+  
     public class ManagerStatus
     {
         private Member m_Member;
