@@ -9,6 +9,8 @@ namespace Forums.ViewModel
 {
     public class Message
     {
+        private static int index = 1;
+
         private Member m_PublishedBy;
         private Discussion m_Discussion;
         private Message m_RepliesTo;
@@ -17,11 +19,26 @@ namespace Forums.ViewModel
         private DateTime m_Published;
         private string m_MessageID;
 
+        public string ID
+        {
+            get
+            {
+                return m_MessageID;
+            }
+
+            private set
+            {
+                m_MessageID = value;
+            }
+        }
+
         public Message(Discussion discussion, Member publishedBy, string content)
         {
             this.m_Discussion = discussion;
             this.m_PublishedBy = publishedBy;
             this.m_Content = content;
+            this.ID = index.ToString();
+            index++;
         }
 
         public Message(Message repliesTo, Member publishedBy, string content)
@@ -30,16 +47,18 @@ namespace Forums.ViewModel
             this.m_PublishedBy = publishedBy;
             this.m_Content = content;
             this.m_Discussion = m_RepliesTo.getDiscussion();
+            this.ID = index.ToString();
+            index++;
         }
 
         public void AddMessage(Message responeMessage)
         {
-            throw new NotImplementedException();
+            this.m_Replies.Add(responeMessage);
         }
 
         public Member GetPublisher()
         {
-            throw new NotImplementedException();
+            return m_PublishedBy;
         }
 
         public Discussion getDiscussion()
