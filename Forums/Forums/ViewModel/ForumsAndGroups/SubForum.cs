@@ -44,7 +44,7 @@ namespace Forums.ViewModel.ForumsAndGroups
                 }
 
             }
-            return null;
+            throw new Exception(string.Format("Discussion {0} not found in sub-forum {1}!", discussionID, this.m_Topic));
         }
 
         public Message AddReplyMessage(Discussion discussion, Member member, string content)
