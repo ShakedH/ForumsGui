@@ -52,7 +52,7 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void AddMember(Member member)
         {
-            throw new NotImplementedException();
+            m_Members.Add(member);
         }
 
         public Member GetMember(string name)
@@ -79,11 +79,13 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public bool IsMember(Member member)
         {
-            return m_ManagerStatus.ContainsKey(member);
+            return m_Members.Contains(member);
         }
 
         public void CreateMember(string username, string password)
         {
+            if (UserExists(username))
+                throw new Exception("User already exists");
             Member member = new Member(username, password, this);
             AddMember(member);
         }
