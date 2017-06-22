@@ -81,16 +81,16 @@ namespace Forums.ViewModel.ForumsAndGroups
             throw new Exception(string.Format("Member {0} not found in Forum!", name));
         }
 
-        public Member GetManager(string name)
+        public Member GetManager(string username)
         {
             foreach (Member manager in this.ManagerStatus.Keys)
             {
-                if (manager.Username == name)
+                if (manager.Username == username)
                 {
                     return manager;
                 }
             }
-            throw new Exception(string.Format("Manager {0} not found in Forum!", name));
+            throw new Exception(string.Format("Manager {0} not found in Forum!", username));
         }
 
         public bool IsMember(Member member)
@@ -123,6 +123,14 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             return !UserExists(username) /*&& m_Policy.ValidatePassword(password)*/;
         }
+
+        public bool IsAdmin(string username)
+        {
+            foreach (Member m in ManagerStatus.Keys)
+                if (m.Username == username)
+                    return true;
+            return false;
+        }
         #endregion
 
         #region Sub-Forum methods
@@ -139,10 +147,10 @@ namespace Forums.ViewModel.ForumsAndGroups
             SubForums.Add(subForum);
         }
 
-        public void CreateSubForum(string topic, string managerName)
+        public void CreateSubForum(string topic, string username)
         {
-            Member manager = GetManager(managerName);
-            SubForum subforum = new SubForum(this, manager, topic);
+            Member mentor = GetManager(username);
+            SubForum subforum = new SubForum(this, mentor, topic);
             AddSubForum(subforum);
         }
 
@@ -155,7 +163,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             throw new NotImplementedException();
         }
-        
+
         // TODO BOM: New method
         public Discussion GetDiscussion(string subForumTopic, int discussionID)
         {

@@ -1,6 +1,7 @@
 ﻿using Forums.ViewModel.ForumsAndGroups;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,30 +13,32 @@ namespace Forums.ViewModel
     {
         private static int index = 1;
 
-        private Member PublishedBy { get; set; }
-        private Discussion Discussion { get; set; }
-        private Message RepliesTo { get; set; }
-        private List<Message> Replies { get; set; }
-        private string Content { get; set; }
-        private DateTime Published { get; set; }
+        public Member PublishedBy { get; set; }
+        public Discussion Discussion { get; set; }
+        public Message RepliesTo { get; set; }
+        public ObservableCollection<Message> Replies { get; set; }
+        public DateTime Published { get; set; }
+        public string Content { get; set; }
         public string MessageID { get; set; }
 
         public Message(Discussion discussion, Member publishedBy, string content)
         {
-            this.Discussion = discussion;
-            this.PublishedBy = publishedBy;
-            this.Content = content;
-            this.MessageID = index.ToString();
+            Replies = new ObservableCollection<Message>();
+            Discussion = discussion;
+            PublishedBy = publishedBy;
+            Content = content;
+            MessageID = index.ToString();
             index++;
         }
 
         public Message(Message repliesTo, Member publishedBy, string content)
         {
-            this.RepliesTo = repliesTo;
-            this.PublishedBy = publishedBy;
-            this.Content = content;
-            this.Discussion = RepliesTo.getDiscussion();
-            this.MessageID = index.ToString();
+            Replies = new ObservableCollection<Message>();
+            RepliesTo = repliesTo;
+            PublishedBy = publishedBy;
+            Content = content;
+            Discussion = RepliesTo.getDiscussion();
+            MessageID = index.ToString();
             index++;
         }
 
@@ -62,6 +65,17 @@ namespace Forums.ViewModel
         public void SendNotification(Notification notification, Member friend)
         {
             throw new NotImplementedException();
+        }
+
+        // TODO BOM: New method
+        public bool HasReplies()
+        {
+            return Replies.Count > 0;
+        }
+
+        public override string ToString()
+        {
+            return Content;
         }
     }
 }

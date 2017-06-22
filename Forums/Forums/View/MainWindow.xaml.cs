@@ -1,4 +1,5 @@
-﻿using Forums.ViewModel.ForumsAndGroups;
+﻿using Forums.ViewModel;
+using Forums.ViewModel.ForumsAndGroups;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,8 +21,12 @@ namespace Forums.View
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private SubForum _currentSubForum;
+        private Member _currentMember;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public Forum CurrentForum { get; set; }
         public SubForum CurrentSubForum { get; set; }
         public Discussion CurrentDiscussion { get; set; }
@@ -29,6 +34,7 @@ namespace Forums.View
 
         public MainWindow()
         {
+            this.DataContext = this;
             InitializeCurrentForum();
             InitializeComponent();
             UsernameTextBlock.Text = "Guest";
@@ -48,11 +54,11 @@ namespace Forums.View
             CurrentForum.CreateSubForum("Vegetarian Diet", grandManager.Username);
             CurrentForum.CreateSubForum("Vegan Diet", grandManager.Username);
             SubForum testSF = CurrentForum.GetSubForum("Italian Cuisine");
-            testSF.CreateDiscussion("Test Discussion 1", grandManager, "This is a test");
-            testSF.CreateDiscussion("Test Discussion 2", grandManager, "This is a test");
-            testSF.CreateDiscussion("Test Discussion 3", grandManager, "This is a test");
-            testSF.CreateDiscussion("Test Discussion 4", grandManager, "This is a test");
-            testSF.CreateDiscussion("Test Discussion 5", grandManager, "This is a test");
+            testSF.CreateDiscussion("Test Discussion 1", grandManager, "This is an opening message 1");
+            testSF.CreateDiscussion("Test Discussion 2", grandManager, "This is an opening message 2");
+            testSF.CreateDiscussion("Test Discussion 3", grandManager, "This is an opening message 3");
+            testSF.CreateDiscussion("Test Discussion 4", grandManager, "This is an opening message 4");
+            testSF.CreateDiscussion("Test Discussion 5", grandManager, "This is an opening message 5");
             Discussion testDiscussion = testSF.GetDiscussion(0);
             testDiscussion.AddMessage(grandManager, "This is a test message 1");
             testDiscussion.AddMessage(grandManager, "This is a test message 2");
@@ -73,14 +79,15 @@ namespace Forums.View
 
         private void SubForumsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SubForum selectedSubForum = e.AddedItems[0] as SubForum;
             try
             {
+                SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
                 Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
                 DiscussionsListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
                 SubForumsListView.Visibility = Visibility.Hidden;
                 DiscussionsListView.Visibility = Visibility.Visible;
+                CreateDiscussionButton.Visibility = CurrentMember != null ? Visibility.Visible : Visibility.Hidden;
             }
             catch (Exception ex)
             {
@@ -90,9 +97,9 @@ namespace Forums.View
 
         private void DiscussionsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int discussionID = DiscussionsListView.SelectedIndex;
             try
             {
+                int discussionID = DiscussionsListView.SelectedIndex;
                 CurrentDiscussion = CurrentForum.GetDiscussion(CurrentSubForum.Topic, discussionID);
                 Binding b = new Binding("CurrentDiscussion.Messages") { Source = this };
                 MessagesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
@@ -107,7 +114,17 @@ namespace Forums.View
 
         private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Message selectedMessage = e.AddedItems[0] as Message;
+            if (selectedMessage.HasReplies())
+            {
 
+            }
+        }
+
+        private void NotifyPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 }

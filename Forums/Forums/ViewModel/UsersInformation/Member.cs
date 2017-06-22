@@ -67,7 +67,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             throw new NotImplementedException();
         }
 
-        // TODO BOM: New method!
+        // TODO BOM: New method
         public void SetAsManager(Forum forum)
         {
             forum.AddManager(this);
@@ -84,6 +84,11 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             Member m = obj as Member;
             return Username == m.Username;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
