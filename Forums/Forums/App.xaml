@@ -61,5 +61,26 @@
             <Setter Property="Margin"
                     Value="0,0,0,20" />
         </Style>
+        <Style TargetType="ListView"
+               x:Key="ListViewStyle">
+            <Setter Property="Grid.Column"
+                    Value="7" />
+            <Setter Property="Grid.Row"
+                    Value="6" />
+            <Setter Property="Grid.ColumnSpan"
+                    Value="6" />
+            <Setter Property="Grid.RowSpan"
+                    Value="12" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                    Value="Auto" />
+            <Setter Property="ScrollViewer.CanContentScroll"
+                    Value="True" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+        </Style>
     </Application.Resources>
 </Application>

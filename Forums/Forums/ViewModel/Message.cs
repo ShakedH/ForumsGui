@@ -12,59 +12,46 @@ namespace Forums.ViewModel
     {
         private static int index = 1;
 
-        private Member m_PublishedBy;
-        private Discussion m_Discussion;
-        private Message m_RepliesTo;
-        private List<Message> m_Replies = new List<Message>();
-        private string m_Content;
-        private DateTime m_Published;
-        private string m_MessageID;
-
-        public string ID
-        {
-            get
-            {
-                return m_MessageID;
-            }
-
-            private set
-            {
-                m_MessageID = value;
-            }
-        }
+        private Member PublishedBy { get; set; }
+        private Discussion Discussion { get; set; }
+        private Message RepliesTo { get; set; }
+        private List<Message> Replies { get; set; }
+        private string Content { get; set; }
+        private DateTime Published { get; set; }
+        public string MessageID { get; set; }
 
         public Message(Discussion discussion, Member publishedBy, string content)
         {
-            this.m_Discussion = discussion;
-            this.m_PublishedBy = publishedBy;
-            this.m_Content = content;
-            this.ID = index.ToString();
+            this.Discussion = discussion;
+            this.PublishedBy = publishedBy;
+            this.Content = content;
+            this.MessageID = index.ToString();
             index++;
         }
 
         public Message(Message repliesTo, Member publishedBy, string content)
         {
-            this.m_RepliesTo = repliesTo;
-            this.m_PublishedBy = publishedBy;
-            this.m_Content = content;
-            this.m_Discussion = m_RepliesTo.getDiscussion();
-            this.ID = index.ToString();
+            this.RepliesTo = repliesTo;
+            this.PublishedBy = publishedBy;
+            this.Content = content;
+            this.Discussion = RepliesTo.getDiscussion();
+            this.MessageID = index.ToString();
             index++;
         }
 
         public void AddMessage(Message responeMessage)
         {
-            this.m_Replies.Add(responeMessage);
+            this.Replies.Add(responeMessage);
         }
 
         public Member GetPublisher()
         {
-            return m_PublishedBy;
+            return PublishedBy;
         }
 
         public Discussion getDiscussion()
         {
-            return m_Discussion;
+            return Discussion;
         }
 
         public void SendOpenNotif()
@@ -77,5 +64,4 @@ namespace Forums.ViewModel
             throw new NotImplementedException();
         }
     }
-
 }

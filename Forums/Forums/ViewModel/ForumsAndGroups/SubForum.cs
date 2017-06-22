@@ -41,15 +41,6 @@ namespace Forums.ViewModel.ForumsAndGroups
         public Discussion GetDiscussion(int discussionID)
         {
             return Discussions[discussionID];
-            //foreach (Discussion dis in this.Discussions)
-            //{
-            //    if (dis.ID == discussionID)
-            //    {
-            //        return dis;
-            //    }
-
-            //}
-            //throw new Exception(string.Format("Discussion {0} not found in sub-forum {1}!", discussionID, this.Topic));
         }
 
         public Message AddReplyMessage(Discussion discussion, Member member, string content)

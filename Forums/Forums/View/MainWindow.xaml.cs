@@ -50,6 +50,15 @@ namespace Forums.View
             SubForum testSF = CurrentForum.GetSubForum("Italian Cuisine");
             testSF.CreateDiscussion("Test Discussion 1", grandManager, "This is a test");
             testSF.CreateDiscussion("Test Discussion 2", grandManager, "This is a test");
+            testSF.CreateDiscussion("Test Discussion 3", grandManager, "This is a test");
+            testSF.CreateDiscussion("Test Discussion 4", grandManager, "This is a test");
+            testSF.CreateDiscussion("Test Discussion 5", grandManager, "This is a test");
+            Discussion testDiscussion = testSF.GetDiscussion(0);
+            testDiscussion.AddMessage(grandManager, "This is a test message 1");
+            testDiscussion.AddMessage(grandManager, "This is a test message 2");
+            testDiscussion.AddMessage(grandManager, "This is a test message 3");
+            testDiscussion.AddMessage(grandManager, "This is a test message 4");
+            testDiscussion.AddMessage(grandManager, "This is a test message 5");
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -62,13 +71,12 @@ namespace Forums.View
             new LoginWindow(this).ShowDialog();
         }
 
-        private void SubForumsListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void SubForumsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListViewItem selectedItem = sender as ListViewItem;
-            string subForumTopic = selectedItem.Content.ToString();
+            SubForum selectedSubForum = e.AddedItems[0] as SubForum;
             try
             {
-                CurrentSubForum = CurrentForum.GetSubForum(subForumTopic);
+                CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
                 Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
                 DiscussionsListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
                 SubForumsListView.Visibility = Visibility.Hidden;
@@ -80,18 +88,26 @@ namespace Forums.View
             }
         }
 
-        private void DiscussionsListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void DiscussionsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListViewItem selectedItem = sender as ListViewItem;
             int discussionID = DiscussionsListView.SelectedIndex;
             try
             {
                 CurrentDiscussion = CurrentForum.GetDiscussion(CurrentSubForum.Topic, discussionID);
+                Binding b = new Binding("CurrentDiscussion.Messages") { Source = this };
+                MessagesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                DiscussionsListView.Visibility = Visibility.Hidden;
+                MessagesListView.Visibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
+        }
+
+        private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

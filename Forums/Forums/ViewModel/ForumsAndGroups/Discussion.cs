@@ -48,7 +48,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         public Message GetMessage(string messageID)
         {
             foreach (Message msg in Messages)
-                if (msg.ID == messageID)
+                if (msg.MessageID == messageID)
                     return msg;
             throw new Exception(string.Format("Message #{0} not found in discussion {1}", messageID, ID));
         }

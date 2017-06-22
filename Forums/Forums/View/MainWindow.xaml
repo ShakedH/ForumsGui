@@ -90,42 +90,17 @@
                    Grid.ColumnSpan="3"
                    Style="{StaticResource HelloUserText}" />
         <ListView Name="SubForumsListView"
-                  Grid.Column="7"
-                  Grid.Row="6"
-                  Grid.ColumnSpan="6"
-                  Grid.RowSpan="12"
+                  Style="{StaticResource ListViewStyle}"
                   ItemsSource="{Binding SubForums}"
-                  BorderThickness="0"
-                  HorizontalAlignment="Center"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.CanContentScroll="True"
-                  Cursor="Hand">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewMouseLeftButtonDown"
-                                 Handler="SubForumsListView_PreviewMouseLeftButtonDown" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+                  SelectionChanged="SubForumsListView_SelectionChanged" />
         <ListView Name="DiscussionsListView"
+                  Style="{StaticResource ListViewStyle}"
                   Visibility="Hidden"
-                  Grid.Column="7"
-                  Grid.Row="6"
-                  Grid.ColumnSpan="6"
-                  Grid.RowSpan="12"
-                  ItemsSource="{Binding SubForums}"
-                  BorderThickness="0"
-                  HorizontalAlignment="Center"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.CanContentScroll="True"
-                  Cursor="Hand">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewMouseLeftButtonDown"
-                                 Handler="DiscussionsListView_PreviewMouseLeftButtonDown" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+                  SelectionChanged="DiscussionsListView_SelectionChanged" />
+        <ListView Name="MessagesListView"
+                  Style="{StaticResource ListViewStyle}"
+                  Visibility="Hidden"
+                  SelectionChanged="MessagesListView_SelectionChanged" />
         <Button Name="CreateDiscussionButton"
                 Grid.Column="7"
                 Grid.Row="4"
