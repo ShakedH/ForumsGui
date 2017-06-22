@@ -20,12 +20,12 @@ namespace Forums.View
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        private MainWindow m_MainWindow;
+        private MainWindow _mainWindow;
 
         public RegisterWindow(MainWindow mainWindow)
         {
             InitializeComponent();
-            this.m_MainWindow = mainWindow;
+            _mainWindow = mainWindow;
         }
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
@@ -34,9 +34,11 @@ namespace Forums.View
             string password = PasswordTextBox.Password;
             try
             {
-                this.m_MainWindow.CurrentForum.CreateMember(username, password);
-                this.m_MainWindow.CurrentMember = new Member(username, password, this.m_MainWindow.CurrentForum);
-                this.m_MainWindow.UsernameTextBlock.Text = this.m_MainWindow.CurrentMember.Name;
+                _mainWindow.CurrentForum.CreateMember(username, password);
+                _mainWindow.CurrentMember = new Member(username, password, _mainWindow.CurrentForum);
+                _mainWindow.UsernameTextBlock.Text = _mainWindow.CurrentMember.Username;
+                System.Windows.Forms.MessageBox.Show("Signed up successfully!");
+                Close();
             }
             catch (Exception)
             {

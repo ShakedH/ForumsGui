@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forums.ViewModel.ForumsAndGroups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,27 +20,29 @@ namespace Forums.View
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private MainWindow m_MainWindow;
+        private MainWindow _mainWindow;
+        private Forum _currentForum;
 
         public LoginWindow(MainWindow mainWindow)
         {
             InitializeComponent();
-            this.m_MainWindow = mainWindow;
+            _mainWindow = mainWindow;
+            _currentForum = _mainWindow.CurrentForum;
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameTextBox.Text;
             string password = PasswordTextBox.Password;
-            //if (this.m_MainWindow.CurrentForum.)
-            //try
-            //{
-            //    this.m_MainWindow.CurrentForum.CreateMember(username, password);
-            //}
-            //catch (Exception)
-            //{
-            //    System.Windows.Forms.MessageBox.Show("Sorry! Username already exists.\nTry a different one");
-            //}
+            if (_currentForum.UserExists(username) && _currentForum.GetMember(username).Password == password)
+            {
+                _mainWindow.CurrentMember = new Member(username, password, _currentForum);
+                _mainWindow.UsernameTextBlock.Text = _mainWindow.CurrentMember.Username;
+                System.Windows.Forms.MessageBox.Show("Logged in successfully!");
+                Close();
+            }
+            else
+                System.Windows.Forms.MessageBox.Show("Username or password are incorrect.");
         }
     }
 }

@@ -27,39 +27,52 @@ namespace Forums.ViewModel.ForumsAndGroups
         }
         #endregion
 
-        private Dictionary<Member, ManagerStatus> m_ManagerStatus = new Dictionary<Member, ManagerStatus>();
-        private List<Member> m_Members = new List<Member>();
-
-        private List<SubForum> m_SubForumList = new List<SubForum>();
-        private List<FriendsGroup> m_FriendsGroups = new List<FriendsGroup>();
-        private List<Complaint> m_Complaints = new List<Complaint>();
-        private EventLogger m_EventLogger = new EventLogger();
-        private ErrorLogger m_ErrorLogger = new ErrorLogger();
-        private Policy m_Policy;
-        private string m_Topic;
+        private Dictionary<Member, ManagerStatus> ManagerStatus { get; set; }
+        private List<Member> Members { get; set; }
+        private List<SubForum> SubForumList { get; set; }
+        private List<FriendsGroup> FriendsGroups { get; set; }
+        private List<Complaint> Complaints { get; set; }
+        private EventLogger EventLogger { get; set; }
+        private ErrorLogger ErrorLogger { get; set; }
+        private Policy Policy;
+        private string Topic;
 
         public Forum(Member manager, Policy policy, string topic)
         {
-            throw new NotImplementedException();
+            ManagerStatus = new Dictionary<Member, ForumsAndGroups.ManagerStatus>();
+            Members = new List<Member>();
+            SubForumList = new List<SubForum>();
+            FriendsGroups = new List<FriendsGroup>();
+            Complaints = new List<Complaint>();
+            EventLogger = new EventLogger();
+            ErrorLogger = new ErrorLogger();
+            ManagerStatus ms = new ManagerStatus(manager, this);
+            ManagerStatus.Add(manager, ms);
+            Members.Add(manager);
+            Policy = policy;
+            Topic = topic;
         }
 
         #region Users methods
         public void AddManager(Member manager)
         {
-            if (!m_ManagerStatus.ContainsKey(manager))
-                m_ManagerStatus.Add(manager, new ManagerStatus(manager, this));
+            if (!ManagerStatus.ContainsKey(manager))
+            {
+                ManagerStatus.Add(manager, new ManagerStatus(manager, this));
+                Members.Add(manager);
+            }
         }
 
         public void AddMember(Member member)
         {
-            m_Members.Add(member);
+            Members.Add(member);
         }
 
         public Member GetMember(string name)
         {
-            foreach (Member member in this.m_Members)
+            foreach (Member member in this.Members)
             {
-                if (member.Name == name)
+                if (member.Username == name)
                     return member;
             }
             throw new Exception(string.Format("Member {0} not found in Forum!", name));
@@ -67,9 +80,9 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public Member GetManager(string name)
         {
-            foreach (Member manager in this.m_ManagerStatus.Keys)
+            foreach (Member manager in this.ManagerStatus.Keys)
             {
-                if (manager.Name == name)
+                if (manager.Username == name)
                 {
                     return manager;
                 }
@@ -79,24 +92,22 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public bool IsMember(Member member)
         {
-            return m_Members.Contains(member);
+            return Members.Contains(member);
         }
 
         public void CreateMember(string username, string password)
         {
             if (UserExists(username))
-                throw new Exception("User already exists");
+                throw new Exception("Sorry! Username already exists");
             Member member = new Member(username, password, this);
             AddMember(member);
         }
 
         public bool UserExists(string username)
         {
-            foreach (Member member in m_Members)
-            {
-                if (member.Name == username)
+            foreach (Member member in Members)
+                if (member.Username == username)
                     return true;
-            }
             return false;
         }
 

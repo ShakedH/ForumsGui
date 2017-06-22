@@ -1,61 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
     [Serializable]
     public class Member : ASubject, IObserver
     {
-        private string m_UserName;
-
-        public string Name
-        {
-            get { return m_UserName; }
-            set { m_UserName = value; }
-        }
-
-
-        private string m_Password;
-        private bool m_IsActive = true;
-        private Forum m_MemberIn;
-        private List<Notification> m_Notifications = new List<Notification>();
-        private List<Message> m_Messages = new List<Message>();
-        private List<FriendsGroup> m_FriendsGroups = new List<FriendsGroup>();
-        private DateTime m_SuspensionPeriod;
-        private List<Member> m_Friends = new List<Member>();
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public bool IsActive { get; set; }
+        public Forum MemberIn { get; set; }
+        public List<Notification> Notifications { get; set; }
+        public List<Message> Messages { get; set; }
+        public List<FriendsGroup> FriendsGroups { get; set; }
+        public DateTime SuspensionPeriod { get; set; }
+        public List<Member> Friends { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Member(string userName, string password, Forum memberIn)
         {
-            m_UserName = userName;
-            m_MemberIn = memberIn;
-            m_Password = password;
-            m_IsActive = true;
+            Username = userName;
+            MemberIn = memberIn;
+            Password = password;
+            IsActive = true;
+            Notifications = new List<Notification>();
+            Messages = new List<Message>();
+            FriendsGroups = new List<FriendsGroup>();
+            SuspensionPeriod = new DateTime();
+            Friends = new List<Member>();
         }
 
         public List<Member> GetListOfFriends()
         {
-            return m_Friends;
+            return Friends;
         }
 
         public void AddMessage(Message message)
         {
-            if (!m_Messages.Contains(message))
+            if (!Messages.Contains(message))
             {
-                m_Messages.Add(message);
-                string content = string.Format("Your friend {0} posted new message in Discussion with id: {1}", m_UserName, message.getDiscussion().ID);
+                Messages.Add(message);
+                string content = string.Format("Your friend {0} posted new message in Discussion with id: {1}", Username, message.getDiscussion().ID);
                 Notification notification = new Notification(content);
                 Notify(notification);
             }
         }
 
-        public void setSuspensionPeriod(DateTime suspensionPeriod)
+        public void SetSuspensionPeriod(DateTime suspensionPeriod)
         {
-            m_SuspensionPeriod = suspensionPeriod;
+            SuspensionPeriod = suspensionPeriod;
         }
 
         public void AddFriendGroup(FriendsGroup friendsGroup)
         {
-            m_FriendsGroups.Add(friendsGroup);
+            FriendsGroups.Add(friendsGroup);
         }
 
         public void AddComplaintWritten(Complaint complaint)
@@ -68,18 +67,23 @@ namespace Forums.ViewModel.ForumsAndGroups
             throw new NotImplementedException();
         }
 
+        // TODO BOM: New method!
+        public void SetAsManager(Forum forum)
+        {
+            forum.AddManager(this);
+            if (MemberIn == null)
+                MemberIn = forum;
+        }
+
         public void Update(Notification notification)
         {
-            this.m_Notifications.Add(notification);
+            this.Notifications.Add(notification);
         }
 
-        public bool equals(Member m)
+        public override bool Equals(object obj)
         {
-            if (m_UserName == m.Name)
-                return true;
-
-            return false;
+            Member m = obj as Member;
+            return Username == m.Username;
         }
-
     }
 }

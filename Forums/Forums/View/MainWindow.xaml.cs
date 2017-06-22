@@ -1,6 +1,7 @@
 ﻿using Forums.ViewModel.ForumsAndGroups;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,10 +27,12 @@ namespace Forums.View
 
         public MainWindow()
         {
-            //this.DataContext = m_CurrentForum;
             InitializeComponent();
-            this.CurrentForum = new Forum(null, null, "Food");
+            DataContext = CurrentForum;
             UsernameTextBlock.Text = "Guest";
+            Member forumManager = new Member("a", "a", CurrentForum);
+            CurrentForum = new Forum(forumManager, null, "Food");
+            forumManager.SetAsManager(CurrentForum);
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +43,6 @@ namespace Forums.View
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             new LoginWindow(this).ShowDialog();
-            UsernameTextBlock.Text = this.CurrentMember.Name;
         }
     }
 }
