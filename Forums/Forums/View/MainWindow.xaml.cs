@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,7 @@ namespace Forums.View
         public SubForum CurrentSubForum { get; set; }
         public Discussion CurrentDiscussion { get; set; }
         public Member CurrentMember { get; set; }
+        public Message CurrentMessage { get; set; }
 
         public MainWindow()
         {
@@ -60,11 +62,10 @@ namespace Forums.View
             testSF.CreateDiscussion("Test Discussion 4", grandManager, "This is an opening message 4");
             testSF.CreateDiscussion("Test Discussion 5", grandManager, "This is an opening message 5");
             Discussion testDiscussion = testSF.GetDiscussion(0);
-            testDiscussion.AddMessage(grandManager, "This is a test message 1");
-            testDiscussion.AddMessage(grandManager, "This is a test message 2");
-            testDiscussion.AddMessage(grandManager, "This is a test message 3");
-            testDiscussion.AddMessage(grandManager, "This is a test message 4");
-            testDiscussion.AddMessage(grandManager, "This is a test message 5");
+            Message OnePointOne = new Message(testDiscussion, grandManager, "This is reply message 1.1");
+            testDiscussion.GetOpenMessage().AddMessage(OnePointOne);
+            testDiscussion.GetOpenMessage().AddMessage(new Message(testDiscussion, grandManager, "This is reply message 1.2"));
+            OnePointOne.AddMessage(new Message(testDiscussion, grandManager, "This is reply message 1.1.1"));
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -114,11 +115,52 @@ namespace Forums.View
 
         private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Message selectedMessage = e.AddedItems[0] as Message;
-            if (selectedMessage.HasReplies())
+            try
             {
-
+                Message selectedMessage = e.AddedItems[0] as Message;
+                if (selectedMessage.HasReplies())
+                {
+                    CurrentMessage = selectedMessage;
+                    Binding b = new Binding("CurrentMessage.Replies") { Source = this };
+                    RepliesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                    MessagesListView.Visibility = Visibility.Hidden;
+                    RepliesListView.Visibility = Visibility.Visible;
+                }
             }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void RepliesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (!isUserInteraction)
+                    return;
+
+                Message selectedMessage = e.AddedItems[0] as Message;
+                if (selectedMessage.HasReplies())
+                {
+                    isUserInteraction = false;
+                    CurrentMessage = selectedMessage;
+                    Binding b = new Binding("CurrentMessage.Replies") { Source = this };
+                    RepliesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                    MessagesListView.Visibility = Visibility.Hidden;
+                    RepliesListView.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        bool isUserInteraction = false;
+        private void RepliesListView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            isUserInteraction = true;
         }
 
         private void NotifyPropertyChanged(string propName)
@@ -126,5 +168,7 @@ namespace Forums.View
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+
+
     }
 }
