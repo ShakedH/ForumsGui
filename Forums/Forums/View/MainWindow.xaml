@@ -106,6 +106,7 @@
                 Grid.ColumnSpan="2"
                 Content="Open New Discussion"
                 Visibility="Hidden"
+                Click="CreateDiscussionButton_Click"
                 Style="{StaticResource SignUpButton}" />
         <Button Name="CreateSubForumButton"
                 Grid.Column="11"
