@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="Create Sub Forum"
         Height="300"
-        Width="300">
+        Width="300"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
@@ -35,8 +37,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Food Forum - Create Sub Forum"
                    Grid.Row="1"
-                   Grid.Column="3"
-                   Grid.ColumnSpan="4"
+                   Grid.Column="2"
+                   Grid.ColumnSpan="6"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontWeight="SemiBold" />
@@ -52,7 +54,7 @@
                    Grid.ColumnSpan="7"
                    VerticalAlignment="Center">
             <TextBlock Text="Mentor Username: " />
-            <PasswordBox Name="MentorTextBox" />
+            <TextBox Name="MentorTextBox" />
         </DockPanel>
         <Button Content="Create Sub Forum"
                 Grid.Column="3"

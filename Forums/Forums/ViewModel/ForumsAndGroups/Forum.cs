@@ -124,7 +124,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             return !UserExists(username) /*&& m_Policy.ValidatePassword(password)*/;
         }
 
-        public bool IsAdmin(string username)
+        public bool IsManager(string username)
         {
             foreach (Member m in ManagerStatus.Keys)
                 if (m.Username == username)
@@ -156,7 +156,10 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public bool SubForumExists(string topic)
         {
-            throw new NotImplementedException();
+            foreach (SubForum sf in SubForums)
+                if (sf.Topic.ToLower() == topic.ToLower())
+                    return true;
+            return false;
         }
 
         public bool ValidateSubForumTopic(string topic)
@@ -178,7 +181,6 @@ namespace Forums.ViewModel.ForumsAndGroups
             Discussion dis = sf.CreateDiscussion(topic, member, content);
             Message msg = dis.GetOpenMessage();
             member.AddMessage(msg);
-
         }
 
         public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, string content)
