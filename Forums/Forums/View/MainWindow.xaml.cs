@@ -78,6 +78,11 @@ namespace Forums.View
             new LoginWindow(this).ShowDialog();
         }
 
+        private void CreateSubForumButton_Click(object sender, RoutedEventArgs e)
+        {
+            new CreateSubForumWindow(this).ShowDialog();
+        }
+
         private void SubForumsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
