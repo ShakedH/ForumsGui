@@ -42,7 +42,7 @@ namespace Forums.View
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Sorry! Username already exists.\nTry a different one");
+                System.Windows.Forms.MessageBox.Show("Oops! Username already exists.\nTry a different one");
             }
         }
     }

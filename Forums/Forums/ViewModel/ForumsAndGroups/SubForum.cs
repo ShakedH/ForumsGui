@@ -1,52 +1,55 @@
 ﻿using Forums.ViewModel.UsersInformation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
     public class SubForum
     {
-        private Forum m_Forum;
-        private List<Discussion> m_Discussions = new List<Discussion>();
-        private Dictionary<Member, MentorStatus> m_MentorStatus = new Dictionary<Member, MentorStatus>();
-        private string m_Topic;
+        public Forum Forum { get; set; }
+        public ObservableCollection<Discussion> Discussions { get; set; }
+        public Dictionary<Member, MentorStatus> MentorStatus { get; set; }
+        public string Topic { get; set; }
 
         public SubForum(Forum forum, Member mentor, string topic)
         {
-            this.m_Forum = forum;
-            this.m_Topic = topic;
-            this.AddMentor(mentor, new MentorStatus(mentor, this));
-
+            Discussions = new ObservableCollection<Discussion>();
+            MentorStatus = new Dictionary<Member, UsersInformation.MentorStatus>();
+            Forum = forum;
+            Topic = topic;
+            AddMentor(mentor, new MentorStatus(mentor, this));
         }
 
         public void AddMentor(Member mentor, MentorStatus mentorStatus)
         {
-            this.m_MentorStatus.Add(mentor, mentorStatus);
+            this.MentorStatus.Add(mentor, mentorStatus);
         }
 
         public Discussion CreateDiscussion(string topic, Member member, string content)
         {
             Discussion discussion = new Discussion(this, topic, content, member);
-            this.m_Discussions.Add(discussion);
+            this.Discussions.Add(discussion);
             return discussion;
         }
 
         public void AddDiscussion(Discussion discussion)
         {
-            this.m_Discussions.Add(discussion);
+            this.Discussions.Add(discussion);
         }
 
-        public Discussion GetDiscussion(string discussionID)
+        public Discussion GetDiscussion(int discussionID)
         {
-            foreach (Discussion dis in this.m_Discussions)
-            {
-                if (dis.ID == discussionID)
-                {
-                    return dis;
-                }
+            return Discussions[discussionID];
+            //foreach (Discussion dis in this.Discussions)
+            //{
+            //    if (dis.ID == discussionID)
+            //    {
+            //        return dis;
+            //    }
 
-            }
-            throw new Exception(string.Format("Discussion {0} not found in sub-forum {1}!", discussionID, this.m_Topic));
+            //}
+            //throw new Exception(string.Format("Discussion {0} not found in sub-forum {1}!", discussionID, this.Topic));
         }
 
         public Message AddReplyMessage(Discussion discussion, Member member, string content)
@@ -68,6 +71,10 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             throw new NotImplementedException();
         }
-    }
 
+        public override string ToString()
+        {
+            return Topic;
+        }
+    }
 }

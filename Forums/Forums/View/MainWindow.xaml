@@ -9,7 +9,8 @@
         Height="768"
         Width="1366"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        DataContext="{Binding RelativeSource={RelativeSource Self}, Path=CurrentForum}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
@@ -88,35 +89,52 @@
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Style="{StaticResource HelloUserText}" />
-        <Grid Grid.Column="4"
-              Grid.Row="6"
-              Grid.ColumnSpan="12"
-              Grid.RowSpan="12">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Horizontal"
-                            Name="AllSubForumsStackPanel">
-                </StackPanel>
-            </ScrollViewer>
-            <DataGrid Name="SubForumDataGrid"
-                      Visibility="Hidden"
-                      IsReadOnly="True"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      CanUserSortColumns="True"
-                      SelectionMode="Single"
-                      ItemsSource="{Binding DiscussionMessages}" />
-        </Grid>
+        <ListView Name="SubForumsListView"
+                  Grid.Column="7"
+                  Grid.Row="6"
+                  Grid.ColumnSpan="6"
+                  Grid.RowSpan="12"
+                  ItemsSource="{Binding SubForums}"
+                  BorderThickness="0"
+                  HorizontalAlignment="Center"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.CanContentScroll="True"
+                  Cursor="Hand">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown"
+                                 Handler="SubForumsListView_PreviewMouseLeftButtonDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <ListView Name="DiscussionsListView"
+                  Visibility="Hidden"
+                  Grid.Column="7"
+                  Grid.Row="6"
+                  Grid.ColumnSpan="6"
+                  Grid.RowSpan="12"
+                  ItemsSource="{Binding SubForums}"
+                  BorderThickness="0"
+                  HorizontalAlignment="Center"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.CanContentScroll="True"
+                  Cursor="Hand">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown"
+                                 Handler="DiscussionsListView_PreviewMouseLeftButtonDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
         <Button Name="CreateDiscussionButton"
-                Grid.Column="4"
+                Grid.Column="7"
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
-                Content="Open New Discussion"
-                Visibility="{Binding NewDiscussionButtonVisibility}" />
+                Content="Open New Discussion" />
         <Button Name="CreateSubForumButton"
-                Grid.Column="9"
+                Grid.Column="11"
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
-                Content="Open New Sub Forum"
-                Visibility="{Binding NewSubForumButtonVisibility}" />
+                Content="Open New Sub Forum" />
     </Grid>
 </Window>

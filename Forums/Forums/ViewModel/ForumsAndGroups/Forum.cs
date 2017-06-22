@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
@@ -10,6 +10,7 @@ namespace Forums.ViewModel.ForumsAndGroups
     {
         #region Static Methods & Fields
         private static List<Forum> AllForums = new List<Forum>();
+
 
         public static Forum GetForumByName(string forumName)
         {
@@ -27,21 +28,23 @@ namespace Forums.ViewModel.ForumsAndGroups
         }
         #endregion
 
-        private Dictionary<Member, ManagerStatus> ManagerStatus { get; set; }
-        private List<Member> Members { get; set; }
-        private List<SubForum> SubForumList { get; set; }
-        private List<FriendsGroup> FriendsGroups { get; set; }
-        private List<Complaint> Complaints { get; set; }
-        private EventLogger EventLogger { get; set; }
-        private ErrorLogger ErrorLogger { get; set; }
-        private Policy Policy;
-        private string Topic;
+        public Dictionary<Member, ManagerStatus> ManagerStatus { get; set; }
+        public List<Member> Members { get; set; }
+        public ObservableCollection<SubForum> SubForums { get; set; }
+        public ObservableCollection<Message> DiscussionMessages { get; set; }
+        public List<FriendsGroup> FriendsGroups { get; set; }
+        public List<Complaint> Complaints { get; set; }
+        public EventLogger EventLogger { get; set; }
+        public ErrorLogger ErrorLogger { get; set; }
+        public Policy Policy { get; set; }
+        public string Topic { get; set; }
 
         public Forum(Member manager, Policy policy, string topic)
         {
             ManagerStatus = new Dictionary<Member, ForumsAndGroups.ManagerStatus>();
             Members = new List<Member>();
-            SubForumList = new List<SubForum>();
+            SubForums = new ObservableCollection<SubForum>();
+            DiscussionMessages = new ObservableCollection<Message>();
             FriendsGroups = new List<FriendsGroup>();
             Complaints = new List<Complaint>();
             EventLogger = new EventLogger();
@@ -125,12 +128,15 @@ namespace Forums.ViewModel.ForumsAndGroups
         #region Sub-Forum methods
         public SubForum GetSubForum(string topic)
         {
-            throw new NotImplementedException();
+            foreach (SubForum sf in SubForums)
+                if (sf.Topic == topic)
+                    return sf;
+            throw new Exception("Oops! Sub-forum not found.");
         }
 
         public void AddSubForum(SubForum subForum)
         {
-            throw new NotImplementedException();
+            SubForums.Add(subForum);
         }
 
         public void CreateSubForum(string topic, string managerName)
@@ -148,6 +154,12 @@ namespace Forums.ViewModel.ForumsAndGroups
         public bool ValidateSubForumTopic(string topic)
         {
             throw new NotImplementedException();
+        }
+        
+        // TODO BOM: New method
+        public Discussion GetDiscussion(string subForumTopic, int discussionID)
+        {
+            return GetSubForum(subForumTopic).GetDiscussion(discussionID);
         }
         #endregion
 
