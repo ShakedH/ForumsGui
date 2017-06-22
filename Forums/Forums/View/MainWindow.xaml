@@ -100,6 +100,11 @@
                   Style="{StaticResource ListViewStyle}"
                   Visibility="Hidden"
                   SelectionChanged="MessagesListView_SelectionChanged" />
+        <ListView Name="RepliesListView"
+                  Style="{StaticResource ListViewStyle}"
+                  Visibility="Hidden"
+                  SelectionChanged="RepliesListView_SelectionChanged"
+                  PreviewMouseDown="RepliesListView_PreviewMouseDown"/>
         <Button Name="CreateDiscussionButton"
                 Grid.Column="7"
                 Grid.Row="4"
