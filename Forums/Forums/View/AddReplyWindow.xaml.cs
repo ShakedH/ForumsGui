@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace Forums.View
 {
     /// <summary>
-    /// Interaction logic for AddReplyWindo.xaml
+    /// Interaction logic for AddReplyWindow.xaml
     /// </summary>
     public partial class AddReplyWindow : Window
     {
