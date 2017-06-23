@@ -95,6 +95,8 @@
                x:Key="DiscussionTopic">
             <Setter Property="FontWeight"
                     Value="SemiBold" />
+            <Setter Property="Foreground"
+                    Value="Blue" />
         </Style>
         <Style TargetType="TextBlock"
                x:Key="Message"></Style>
