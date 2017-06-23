@@ -61,7 +61,7 @@ namespace Forums.View
         public bool RegisteredUsersButtonEnabled
         {
             get { return _registeredUsersButtonEnabled; }
-            set { _registeredUsersButtonEnabled = value; NotifyPropertyChanged("NewDiscussionButtonEnabled"); }
+            set { _registeredUsersButtonEnabled = value; NotifyPropertyChanged("RegisteredUsersButtonEnabled"); }
         }
         public Visibility NewSubForumButtonVisibility
         {
