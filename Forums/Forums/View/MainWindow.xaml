@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:Forums.ViewModel"
         xmlns:forumsAndGroups="clr-namespace:Forums.ViewModel.ForumsAndGroups"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Forums App"
         Height="768"
         Width="1366"
         WindowStartupLocation="CenterScreen"
@@ -72,22 +72,24 @@
         <Button Name="SignUpButton"
                 Grid.Column="16"
                 Grid.Row="1"
+                Grid.ColumnSpan="2"
                 Content="Sign Up"
                 Style="{StaticResource SignUpButton}"
                 Click="SignUpButton_Click" />
         <Button Name="LoginButton"
                 Grid.Column="16"
                 Grid.Row="3"
+                Grid.ColumnSpan="2"
                 Content="Login"
                 Style="{StaticResource SignUpButton}"
                 Click="LoginButton_Click" />
         <TextBlock Text="Hello, "
-                   Grid.Column="2"
+                   Grid.Column="3"
                    Grid.Row="1"
                    HorizontalAlignment="Right"
                    Style="{StaticResource HelloUserText}" />
         <TextBlock Name="UsernameTextBlock"
-                   Grid.Column="3"
+                   Grid.Column="4"
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Style="{StaticResource HelloUserText}" />
@@ -120,7 +122,7 @@
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
                 Content="Open New Discussion"
-                Visibility="Hidden"
+                IsEnabled="{Binding NewDiscussionButtonEnabled}"
                 Click="CreateDiscussionButton_Click"
                 Style="{StaticResource SignUpButton}" />
         <Button Name="CreateSubForumButton"
@@ -128,7 +130,7 @@
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
                 Content="Open New Sub Forum"
-                Visibility="Hidden"
+                Visibility="{Binding NewSubForumButtonVisibility}"
                 Click="CreateSubForumButton_Click"
                 Style="{StaticResource SignUpButton}" />
         <Button Name="ReplyButton"
@@ -139,5 +141,12 @@
                 Click="ReplyButton_Click"
                 Style="{StaticResource SignUpButton}" />
 
+        <Button Grid.Column="6"
+                Grid.Row="6"
+                Style="{StaticResource SignUpButton}"
+                Margin="0,0,10,0"
+                Visibility="{Binding GoBackButtonVisibility}"
+                Content="Go Back"
+                Click="Button_Click" />
     </Grid>
 </Window>

@@ -49,7 +49,14 @@
                    Grid.Row="1"
                    Grid.Column="5"
                    Grid.ColumnSpan="5"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   FontWeight="SemiBold" />
+        <TextBlock Name="SubForumTextBlock"
+                   Grid.Row="1"
+                   Grid.Column="5"
+                   Grid.ColumnSpan="5"
+                   VerticalAlignment="Top"
                    HorizontalAlignment="Center"
                    FontWeight="SemiBold" />
         <DockPanel Grid.Column="3"
@@ -64,14 +71,15 @@
                    Grid.ColumnSpan="8"
                    Grid.RowSpan="7"
                    LastChildFill="True">
-            <TextBlock Text="What's on your mind?: " DockPanel.Dock="Top"/>
+            <TextBlock Text="What's on your mind?: "
+                       DockPanel.Dock="Top" />
             <TextBox Name="ContentTextBox" />
         </DockPanel>
         <Button Content="Create Discussion"
                 Grid.Column="6"
                 Grid.Row="13"
                 Grid.ColumnSpan="3"
-                Click="Create_Click" 
-                Style="{StaticResource SignUpButton}"/>
+                Click="Create_Click"
+                Style="{StaticResource SignUpButton}" />
     </Grid>
 </Window>

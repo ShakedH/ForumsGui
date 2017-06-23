@@ -9,13 +9,13 @@
             <Setter Property="FontWeight"
                     Value="SemiBold" />
             <Setter Property="Background"
-                    Value="Gainsboro" />
+                    Value="BurlyWood" />
             <Setter Property="BorderThickness"
                     Value="0" />
             <Setter Property="Cursor"
                     Value="Hand" />
-            <Setter Property="Grid.ColumnSpan"
-                    Value="2" />
+            <Setter Property="FontSize"
+                    Value="14" />
             <Setter Property="Button.Effect">
                 <Setter.Value>
                     <DropShadowEffect Color="Black"
@@ -42,10 +42,19 @@
                 <Trigger Property="IsMouseOver"
                          Value="True">
                     <Setter Property="Background"
+                            Value="Chocolate" />
+                </Trigger>
+                <Trigger Property="IsEnabled"
+                         Value="false">
+                    <Setter Property="Background"
+                            Value="LightGray" />
+                    <Setter Property="Foreground"
                             Value="Gray" />
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+
         <Style TargetType="TextBlock"
                x:Key="HelloUserText">
             <Setter Property="VerticalAlignment"
@@ -54,7 +63,11 @@
                     Value="SemiBold" />
             <Setter Property="TextWrapping"
                     Value="Wrap" />
+            <Setter Property="FontSize"
+                    Value="16" />
         </Style>
+
+
         <Style TargetType="TextBlock"
                x:Key="SubForumText">
             <Setter Property="VerticalAlignment"
@@ -70,6 +83,8 @@
             <Setter Property="Margin"
                     Value="0,0,0,20" />
         </Style>
+
+
         <Style TargetType="{x:Type Control}"
                x:Key="ListViewStyle">
             <Setter Property="Grid.Column"

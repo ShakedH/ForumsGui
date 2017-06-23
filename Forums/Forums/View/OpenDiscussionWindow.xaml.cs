@@ -19,12 +19,15 @@ namespace Forums.View
     /// </summary>
     public partial class OpenDiscussionWindow : Window
     {
+        private string _subForumTopic;
         private MainWindow _mainWindow;
 
-        public OpenDiscussionWindow(MainWindow mainWindow)
+        public OpenDiscussionWindow(MainWindow mainWindow, string topic)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+            _subForumTopic = topic;
+            TopicTextBox.Text = string.Format("{0} Sub Forum", _subForumTopic);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
