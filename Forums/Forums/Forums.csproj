@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\AddReplyWindo.xaml.cs">
+      <DependentUpon>AddReplyWindo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateSubForumWindow.xaml.cs">
       <DependentUpon>CreateSubForumWindow.xaml</DependentUpon>
     </Compile>
@@ -68,6 +71,10 @@
     <Compile Include="View\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddReplyWindo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateSubForumWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

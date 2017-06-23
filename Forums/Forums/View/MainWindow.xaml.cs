@@ -180,5 +180,15 @@ namespace Forums.View
                 CurrentForum = (Forum)formatter.Deserialize(stream);
             }
         }
+
+        private void ReplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DiscussionsTreeView.SelectedItem == null || DiscussionsTreeView.SelectedItem is Discussion)
+            {
+                System.Windows.Forms.MessageBox.Show("Please Select a message to reply to");
+                return;
+            }
+            new AddReplyWindow((Message)DiscussionsTreeView.SelectedItem, CurrentMember).Show();
+        }
     }
 }

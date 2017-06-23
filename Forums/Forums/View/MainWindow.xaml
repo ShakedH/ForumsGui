@@ -103,11 +103,17 @@
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type forumsAndGroups:Discussion}"
                                           ItemsSource="{Binding Messages}">
-                    <TreeViewItem Header="{Binding Topic}" />
+                    <TextBlock Style="{StaticResource DiscussionTopic}"
+                               Text="{Binding Topic}" />
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type viewModel:Message}"
                                           ItemsSource="{Binding Replies}">
-                    <TreeViewItem Header="{Binding Content}" />
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource Message}"
+                                   Text="{Binding Content}" />
+                        <TextBlock Style="{StaticResource MessageAuthor}"
+                                   Text="{Binding PublishedBy.Username,StringFormat='Published By: {0}'}" />
+                    </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
@@ -127,6 +133,14 @@
                 Visibility="{Binding NewSubForumButtonVisibility}"
                 Click="CreateSubForumButton_Click"
                 Style="{StaticResource SignUpButton}" />
+        <Button Name="ReplyButton"
+                Content="Reply"
+                Grid.Row="18"
+                Grid.Column="11"
+                Visibility="Hidden"
+                Click="ReplyButton_Click"
+                Style="{StaticResource SignUpButton}" />
+
         <Button Grid.Column="6"
                 Grid.Row="6"
                 Style="{StaticResource SignUpButton}"
