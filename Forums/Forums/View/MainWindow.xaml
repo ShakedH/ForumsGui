@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forums"
+        xmlns:viewModel="clr-namespace:Forums.ViewModel"
+        xmlns:forumsAndGroups="clr-namespace:Forums.ViewModel.ForumsAndGroups"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="768"
@@ -92,19 +94,20 @@
                   Style="{StaticResource ListViewStyle}"
                   ItemsSource="{Binding CurrentForum.SubForums}"
                   SelectionChanged="SubForumsListView_SelectionChanged" />
-        <ListView Name="DiscussionsListView"
+        <TreeView Name="DiscussionsTreeView"
                   Style="{StaticResource ListViewStyle}"
-                  Visibility="Hidden"
-                  SelectionChanged="DiscussionsListView_SelectionChanged" />
-        <ListView Name="MessagesListView"
-                  Style="{StaticResource ListViewStyle}"
-                  Visibility="Hidden"
-                  SelectionChanged="MessagesListView_SelectionChanged" />
-        <ListView Name="RepliesListView"
-                  Style="{StaticResource ListViewStyle}"
-                  Visibility="Hidden"
-                  SelectionChanged="RepliesListView_SelectionChanged"
-                  PreviewMouseDown="RepliesListView_PreviewMouseDown"/>
+                  Visibility="Hidden">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type forumsAndGroups:Discussion}"
+                                          ItemsSource="{Binding Messages}">
+                    <TreeViewItem Header="{Binding Topic}" />
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type viewModel:Message}"
+                                          ItemsSource="{Binding Replies}">
+                    <TreeViewItem Header="{Binding Content}" />
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
         <Button Name="CreateDiscussionButton"
                 Grid.Column="7"
                 Grid.Row="4"
