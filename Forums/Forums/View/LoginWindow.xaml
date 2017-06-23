@@ -68,6 +68,8 @@
         <Button Content="Log Me In"
                 Grid.Column="3"
                 Grid.Row="7"
+                Grid.RowSpan="2"
+                Margin="0,3,0,3"
                 Grid.ColumnSpan="4"
                 Click="Login_Click"
                 Style="{StaticResource CustomButton}" />
