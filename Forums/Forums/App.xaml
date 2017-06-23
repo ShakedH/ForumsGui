@@ -91,5 +91,12 @@
             <Setter Property="Cursor"
                     Value="Hand" />
         </Style>
+        <Style TargetType="TextBlock"
+               x:Key="DiscussionTopic">
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+        </Style>
+        <Style TargetType="TextBlock"
+               x:Key="Message"></Style>
     </Application.Resources>
 </Application>

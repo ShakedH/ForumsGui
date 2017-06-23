@@ -101,12 +101,13 @@
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type forumsAndGroups:Discussion}"
                                           ItemsSource="{Binding Messages}">
-                    <TextBlock FontWeight="Bold"
+                    <TextBlock Style="{StaticResource DiscussionTopic}"
                                Text="{Binding Topic}" />
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type viewModel:Message}"
                                           ItemsSource="{Binding Replies}">
-                    <TextBlock Text="{Binding Content}" />
+                    <TextBlock Style="{StaticResource Message}"
+                               Text="{Binding Content}" />
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
