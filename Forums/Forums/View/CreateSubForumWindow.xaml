@@ -47,14 +47,16 @@
                    Grid.ColumnSpan="7"
                    VerticalAlignment="Center">
             <TextBlock Text="Sub Forum Topic: " />
-            <TextBox Name="TopicTextBox" />
+            <TextBox Name="TopicTextBox"
+                     TextWrapping="Wrap" />
         </DockPanel>
         <DockPanel Grid.Column="1"
                    Grid.Row="5"
                    Grid.ColumnSpan="7"
                    VerticalAlignment="Center">
             <TextBlock Text="Mentor Username: " />
-            <TextBox Name="MentorTextBox" />
+            <TextBox Name="MentorTextBox"
+                     TextWrapping="Wrap" />
         </DockPanel>
         <Button Content="Create Sub Forum"
                 Grid.Column="3"
