@@ -97,8 +97,22 @@
                     Value="SemiBold" />
             <Setter Property="Foreground"
                     Value="Blue" />
+            <Setter Property="FontSize"
+                    Value="16" />
         </Style>
         <Style TargetType="TextBlock"
-               x:Key="Message"></Style>
+               x:Key="Message">
+            <Setter Property="FontSize"
+                    Value="14" />
+        </Style>
+        <Style TargetType="TextBlock"
+               x:Key="MessageAuthor">
+            <Setter Property="Foreground"
+                    Value="Gray" />
+            <Setter Property="FontStyle"
+                    Value="Italic" />
+            <Setter Property="FontSize"
+                    Value="11" />
+        </Style>
     </Application.Resources>
 </Application>

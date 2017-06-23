@@ -106,8 +106,12 @@
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type viewModel:Message}"
                                           ItemsSource="{Binding Replies}">
-                    <TextBlock Style="{StaticResource Message}"
-                               Text="{Binding Content}" />
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource Message}"
+                                   Text="{Binding Content}" />
+                        <TextBlock Style="{StaticResource MessageAuthor}"
+                                   Text="{Binding PublishedBy.Username,StringFormat='Published By: {0}'}" />
+                    </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
