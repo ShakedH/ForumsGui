@@ -27,7 +27,7 @@ namespace Forums.View
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private const string currentForumPath = "CurrentForum.bin";
+        private string _currentForumPath;
         private bool _registeredUsersButtonEnabled;
         private Visibility _newSubForumButtonVisibility = Visibility.Hidden;
         private Visibility _goBackButtonVisibility = Visibility.Hidden;
@@ -77,34 +77,8 @@ namespace Forums.View
         {
             this.DataContext = this;
             LoadCurrentForum();
-            //InitializeCurrentForum();
             InitializeComponent();
             UsernameTextBlock.Text = "Guest";
-        }
-
-        // ToDo Delete this
-        private void InitializeCurrentForum()
-        {
-            Member grandManager = new Member("a", "a", CurrentForum);
-            Member anotherManager = new Member("admin", "admin", CurrentForum);
-            CurrentForum = new Forum(grandManager, null, "Food");
-            grandManager.SetAsManager(CurrentForum);
-            anotherManager.SetAsManager(CurrentForum);
-            CurrentForum.CreateSubForum("Italian Cuisine", grandManager.Username);
-            CurrentForum.CreateSubForum("Israeli Cuisine", grandManager.Username);
-            CurrentForum.CreateSubForum("Spanish Cuisine", anotherManager.Username);
-            SubForum testSF = CurrentForum.GetSubForum("Italian Cuisine");
-            testSF.CreateDiscussion("Pasta", grandManager, "Welcome! Let me hear your pasta recipes");
-            testSF.CreateDiscussion("Wine", grandManager, "Welcome! Let me hear about your favorite wines");
-            testSF.CreateDiscussion("Coffee", grandManager, "Welcome! Let me hear about espressos");
-            testSF = CurrentForum.GetSubForum("Israeli Cuisine");
-            testSF.CreateDiscussion("Falafel", grandManager, "Welcome! Let me hear your favorite falafel stands");
-            testSF.CreateDiscussion("Hummus", grandManager, "Welcome! Let me hear about your favorite hummus toppings");
-            testSF.CreateDiscussion("Burekas", grandManager, "Welcome! Let me hear the best burekas fillings");
-            testSF = CurrentForum.GetSubForum("Spanish Cuisine");
-            testSF.CreateDiscussion("Alfajores", grandManager, "Welcome! Let me hear how to make alfajores");
-            testSF.CreateDiscussion("Currhos", grandManager, "Welcome! Let me hear how to make Churros");
-            testSF.CreateDiscussion("Flan", grandManager, "Welcome! Let me hear how to make Flan");
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -139,7 +113,7 @@ namespace Forums.View
         {
             try
             {
-                if (e.AddedItems.Count == 0)    // Case of 'UnselectAll()' in 'GoBackButton_Click' method
+                if (e.AddedItems.Count == 0)    // Case of 'SubForumsListView.UnselectAll()'
                     return;
                 SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
@@ -175,7 +149,7 @@ namespace Forums.View
 
         private void SaveCurrentForum()
         {
-            using (Stream stream = new FileStream(currentForumPath, FileMode.Create))
+            using (Stream stream = new FileStream(_currentForumPath, FileMode.Create))
             {
                 IFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, CurrentForum);
@@ -184,10 +158,27 @@ namespace Forums.View
 
         private void LoadCurrentForum()
         {
-            using (Stream stream = File.Open(currentForumPath, FileMode.Open))
+            try
             {
-                IFormatter formatter = new BinaryFormatter();
-                CurrentForum = (Forum)formatter.Deserialize(stream);
+                string currentLocation = Environment.CurrentDirectory;
+                string fileName = "CurrentForum.bin";
+                while (!File.Exists(currentLocation + @"\" + fileName))
+                {
+                    currentLocation = Directory.GetParent(currentLocation).FullName;
+                    if (currentLocation == null)
+                        throw new Exception($"File {fileName} not found");
+                }
+                _currentForumPath = currentLocation + @"\" + fileName;
+
+                using (Stream stream = File.Open(_currentForumPath, FileMode.Open))
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    CurrentForum = (Forum)formatter.Deserialize(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
 

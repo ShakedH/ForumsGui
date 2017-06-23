@@ -17,7 +17,6 @@ namespace Forums.ViewModel
             m_Content = content;
         }
 
-        // TODO BOM: WTF?!
         public Message FindMessage(string messageID)
         {
             throw new NotImplementedException();
