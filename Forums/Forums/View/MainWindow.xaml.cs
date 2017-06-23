@@ -47,7 +47,6 @@ namespace Forums.View
                 GoBackButtonVisibility = value != null ? Visibility.Visible : Visibility.Hidden;
             }
         }
-        public Discussion CurrentDiscussion { get; set; }
         public Member CurrentMember
         {
             get { return _currentMember; }
@@ -58,7 +57,6 @@ namespace Forums.View
                 RegisteredUsersButtonEnabled = value != null && CurrentSubForum != null ? true : false;
             }
         }
-        public List<Message> CurrentMessage { get; set; }
         public bool RegisteredUsersButtonEnabled
         {
             get { return _registeredUsersButtonEnabled; }
@@ -78,8 +76,8 @@ namespace Forums.View
         public MainWindow()
         {
             this.DataContext = this;
-            //LoadCurrentForum();
-            InitializeCurrentForum();
+            LoadCurrentForum();
+            //InitializeCurrentForum();
             InitializeComponent();
             UsernameTextBlock.Text = "Guest";
         }
@@ -151,6 +149,7 @@ namespace Forums.View
             {
                 CurrentForum.ForumErrorLogger.WriteToLogger(ex.Message);
                 System.Windows.Forms.MessageBox.Show(ex.Message);
+                SubForumsListView.UnselectAll();
             }
         }
 

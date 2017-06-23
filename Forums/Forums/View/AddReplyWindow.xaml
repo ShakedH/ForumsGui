@@ -73,7 +73,7 @@
                 Grid.Column="6"
                 Grid.Row="13"
                 Grid.ColumnSpan="3"
-                Click="Button_Click" 
-                Style="{StaticResource CustomButton}"/>
+                Click="Button_Click"
+                Style="{StaticResource CustomButton}" />
     </Grid>
 </Window>
