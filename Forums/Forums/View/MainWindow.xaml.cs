@@ -27,14 +27,51 @@ namespace Forums.View
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private string currentForumPath = "CurrentForum.bin";
+        private const string currentForumPath = "CurrentForum.bin";
+        private bool _newDiscussionButtonEnabled;
+        private Visibility _newSubForumButtonVisibility = Visibility.Hidden;
+        private Visibility _goBackButtonVisibility = Visibility.Hidden;
+        private Member _currentMember;
+        private SubForum _currentSubForum;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public Forum CurrentForum { get; set; }
-        public SubForum CurrentSubForum { get; set; }
+        public SubForum CurrentSubForum
+        {
+            get { return _currentSubForum; }
+            set
+            {
+                _currentSubForum = value;
+                NewDiscussionButtonEnabled = value != null && CurrentMember != null ? true : false;
+                GoBackButtonVisibility = value != null ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
         public Discussion CurrentDiscussion { get; set; }
-        public Member CurrentMember { get; set; }
+        public Member CurrentMember
+        {
+            get { return _currentMember; }
+            set
+            {
+                _currentMember = value;
+                NewSubForumButtonVisibility = value != null && CurrentForum.IsManager(value.Username) ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
         public List<Message> CurrentMessage { get; set; }
+        public bool NewDiscussionButtonEnabled
+        {
+            get { return _newDiscussionButtonEnabled; }
+            set { _newDiscussionButtonEnabled = value; NotifyPropertyChanged("NewDiscussionButtonEnabled"); }
+        }
+        public Visibility NewSubForumButtonVisibility
+        {
+            get { return _newSubForumButtonVisibility; }
+            set { _newSubForumButtonVisibility = value; NotifyPropertyChanged("NewSubForumButtonVisibility"); }
+        }
+        public Visibility GoBackButtonVisibility
+        {
+            get { return _goBackButtonVisibility; }
+            set { _goBackButtonVisibility = value; NotifyPropertyChanged("GoBackButtonVisibility"); }
+        }
 
         public MainWindow()
         {
@@ -88,7 +125,14 @@ namespace Forums.View
 
         private void CreateDiscussionButton_Click(object sender, RoutedEventArgs e)
         {
-            new OpenDiscussionWindow(this).ShowDialog();
+            new OpenDiscussionWindow(this, CurrentSubForum.Topic).ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentSubForum = null;
+            SubForumsListView.Visibility = Visibility.Visible;
+            DiscussionsTreeView.Visibility = Visibility.Hidden;
         }
 
         private void SubForumsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -101,7 +145,6 @@ namespace Forums.View
                 DiscussionsTreeView.SetBinding(ItemsControl.ItemsSourceProperty, b);
                 SubForumsListView.Visibility = Visibility.Hidden;
                 DiscussionsTreeView.Visibility = Visibility.Visible;
-                CreateDiscussionButton.Visibility = CurrentMember != null ? Visibility.Visible : Visibility.Hidden;
             }
             catch (Exception ex)
             {

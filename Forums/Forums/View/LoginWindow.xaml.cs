@@ -39,7 +39,6 @@ namespace Forums.View
                 _mainWindow.CurrentMember = new Member(username, password, _currentForum);
                 _mainWindow.UsernameTextBlock.Text = _mainWindow.CurrentMember.Username;
                 System.Windows.Forms.MessageBox.Show("Logged in successfully!");
-                _mainWindow.CreateSubForumButton.Visibility = _currentForum.IsManager(_mainWindow.CurrentMember.Username) ? Visibility.Visible : Visibility.Hidden;
                 Close();
             }
             else
