@@ -83,6 +83,11 @@ namespace Forums.View
             new CreateSubForumWindow(this).ShowDialog();
         }
 
+        private void CreateDiscussionButton_Click(object sender, RoutedEventArgs e)
+        {
+            new OpenDiscussionWindow(this).ShowDialog();
+        }
+
         private void SubForumsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -107,6 +112,9 @@ namespace Forums.View
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
 
+        }
     }
 }

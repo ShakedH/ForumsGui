@@ -11,7 +11,8 @@
         Height="768"
         Width="1366"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
@@ -114,6 +115,7 @@
                 Grid.ColumnSpan="2"
                 Content="Open New Discussion"
                 Visibility="Hidden"
+                Click="CreateDiscussionButton_Click"
                 Style="{StaticResource SignUpButton}" />
         <Button Name="CreateSubForumButton"
                 Grid.Column="11"

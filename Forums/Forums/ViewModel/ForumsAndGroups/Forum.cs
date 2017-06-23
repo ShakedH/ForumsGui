@@ -6,22 +6,19 @@ using System.Windows;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Forum
     {
         #region Static Methods & Fields
         private static List<Forum> AllForums = new List<Forum>();
-
-
         public static Forum GetForumByName(string forumName)
         {
             throw new NotImplementedException();
         }
-
         public static void AddForum(Forum forum)
         {
             throw new NotImplementedException();
         }
-
         public static List<Forum> getAllForums()
         {
             return AllForums;
@@ -174,6 +171,23 @@ namespace Forums.ViewModel.ForumsAndGroups
         }
         #endregion
 
+        #region FriendsGroup methods
+        public List<Member> GetFriendsList(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateFriendGroup(string username, List<Member> members)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssociateFriendGroup(FriendsGroup friendsGroup)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
         public void OpenDiscussion(string subForumTopic, string topic, string content, string writtenBy)
         {
             Member member = GetMember(writtenBy);
@@ -194,23 +208,6 @@ namespace Forums.ViewModel.ForumsAndGroups
         {
             throw new NotImplementedException();
         }
-
-        #region FriendsGroup methods
-        public List<Member> GetFriendsList(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateFriendGroup(string username, List<Member> members)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AssociateFriendGroup(FriendsGroup friendsGroup)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
         public void SendNotification(string subForumTopic, string discussionID)
         {

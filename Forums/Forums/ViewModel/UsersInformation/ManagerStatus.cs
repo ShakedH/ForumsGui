@@ -1,6 +1,8 @@
-﻿namespace Forums.ViewModel.ForumsAndGroups
-{
+﻿using System;
 
+namespace Forums.ViewModel.ForumsAndGroups
+{
+    [Serializable]
     public class ManagerStatus
     {
         public Member m_Member { get; set; }

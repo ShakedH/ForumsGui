@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Forums.ViewModel
 {
+    [Serializable]
     public abstract class ASubject
     {
         protected List<IObserver> m_Observers = new List<IObserver>();
