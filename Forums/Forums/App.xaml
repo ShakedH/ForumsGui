@@ -70,7 +70,7 @@
             <Setter Property="Margin"
                     Value="0,0,0,20" />
         </Style>
-        <Style TargetType="ListView"
+        <Style TargetType="{x:Type Control}"
                x:Key="ListViewStyle">
             <Setter Property="Grid.Column"
                     Value="7" />

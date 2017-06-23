@@ -34,7 +34,7 @@ namespace Forums.View
         public SubForum CurrentSubForum { get; set; }
         public Discussion CurrentDiscussion { get; set; }
         public Member CurrentMember { get; set; }
-        public Message CurrentMessage { get; set; }
+        public List<Message> CurrentMessage { get; set; }
 
         public MainWindow()
         {
@@ -98,82 +98,15 @@ namespace Forums.View
                 SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
                 Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
-                DiscussionsListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                DiscussionsTreeView.SetBinding(ItemsControl.ItemsSourceProperty, b);
                 SubForumsListView.Visibility = Visibility.Hidden;
-                DiscussionsListView.Visibility = Visibility.Visible;
+                DiscussionsTreeView.Visibility = Visibility.Visible;
                 CreateDiscussionButton.Visibility = CurrentMember != null ? Visibility.Visible : Visibility.Hidden;
             }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-        }
-
-        private void DiscussionsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                int discussionID = DiscussionsListView.SelectedIndex;
-                CurrentDiscussion = CurrentForum.GetDiscussion(CurrentSubForum.Topic, discussionID);
-                Binding b = new Binding("CurrentDiscussion.Messages") { Source = this };
-                MessagesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                DiscussionsListView.Visibility = Visibility.Hidden;
-                MessagesListView.Visibility = Visibility.Visible;
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void MessagesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                Message selectedMessage = e.AddedItems[0] as Message;
-                if (selectedMessage.HasReplies())
-                {
-                    CurrentMessage = selectedMessage;
-                    Binding b = new Binding("CurrentMessage.Replies") { Source = this };
-                    RepliesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                    MessagesListView.Visibility = Visibility.Hidden;
-                    RepliesListView.Visibility = Visibility.Visible;
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void RepliesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                if (!isUserInteraction)
-                    return;
-
-                Message selectedMessage = e.AddedItems[0] as Message;
-                if (selectedMessage.HasReplies())
-                {
-                    isUserInteraction = false;
-                    CurrentMessage = selectedMessage;
-                    Binding b = new Binding("CurrentMessage.Replies") { Source = this };
-                    RepliesListView.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                    MessagesListView.Visibility = Visibility.Hidden;
-                    RepliesListView.Visibility = Visibility.Visible;
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
-
-        bool isUserInteraction = false;
-        private void RepliesListView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            isUserInteraction = true;
         }
 
         private void NotifyPropertyChanged(string propName)
