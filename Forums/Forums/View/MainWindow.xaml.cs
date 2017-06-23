@@ -102,6 +102,7 @@ namespace Forums.View
                 SubForumsListView.Visibility = Visibility.Hidden;
                 DiscussionsTreeView.Visibility = Visibility.Visible;
                 CreateDiscussionButton.Visibility = CurrentMember != null ? Visibility.Visible : Visibility.Hidden;
+                ReplyButton.Visibility = CurrentMember != null ? Visibility.Visible : Visibility.Hidden;
             }
             catch (Exception ex)
             {
@@ -136,6 +137,16 @@ namespace Forums.View
                 IFormatter formatter = new BinaryFormatter();
                 CurrentForum = (Forum)formatter.Deserialize(stream);
             }
+        }
+
+        private void ReplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DiscussionsTreeView.SelectedItem == null || DiscussionsTreeView.SelectedItem is Discussion)
+            {
+                System.Windows.Forms.MessageBox.Show("Please Select a message to reply to");
+                return;
+            }
+            new AddReplyWindow((Message)DiscussionsTreeView.SelectedItem, CurrentMember).Show();
         }
     }
 }

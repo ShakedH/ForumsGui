@@ -125,5 +125,13 @@
                 Visibility="Hidden"
                 Click="CreateSubForumButton_Click"
                 Style="{StaticResource SignUpButton}" />
+        <Button Name="ReplyButton"
+                Content="Reply"
+                Grid.Row="18"
+                Grid.Column="11"
+                Visibility="Hidden"
+                Click="ReplyButton_Click"
+                Style="{StaticResource SignUpButton}" />
+
     </Grid>
 </Window>
