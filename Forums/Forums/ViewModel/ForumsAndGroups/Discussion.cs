@@ -68,8 +68,6 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public void SendOpenNotif()
         {
-            // Doesn't match the Sequence Diagrams in order to fit with Observer Desing Pattern
-            // ToDo delete this?
             string notifContent = string.Format("There is a new message in your discussion.\nCheck it out: {0}", DiscussionID);
             Notification notification = new Notification(notifContent);
             Notify(notification);

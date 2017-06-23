@@ -67,12 +67,6 @@ namespace Forums.ViewModel
             throw new NotImplementedException();
         }
 
-        // TODO BOM: New method
-        public bool HasReplies()
-        {
-            return Replies.Count > 0;
-        }
-
         public override string ToString()
         {
             return Content;
