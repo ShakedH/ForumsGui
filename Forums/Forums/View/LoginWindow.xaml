@@ -6,10 +6,17 @@
         xmlns:local="clr-namespace:Forums.View"
         mc:Ignorable="d"
         Title="Forum Login"
-        Height="300"
+        Height="200"
         Width="300"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush>
+            <ImageBrush.ImageSource>
+                <BitmapImage UriSource="/Images/userbackground.jpg"/>
+            </ImageBrush.ImageSource>
+        </ImageBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
@@ -41,20 +48,21 @@
                    Grid.ColumnSpan="4"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   FontWeight="SemiBold" />
+                   FontWeight="SemiBold" 
+                   Foreground="white"/>
         <DockPanel Grid.Column="1"
                    Grid.Row="3"
                    Grid.ColumnSpan="7"
                    VerticalAlignment="Center">
-            <TextBlock Text="Username: " />
+            <TextBlock Text="Username: "  Foreground="White"/>
             <TextBox Name="UsernameTextBox"
-                     TextWrapping="Wrap" />
+                     TextWrapping="Wrap"  />
         </DockPanel>
         <DockPanel Grid.Column="1"
                    Grid.Row="5"
                    Grid.ColumnSpan="7"
                    VerticalAlignment="Center">
-            <TextBlock Text="Password: " />
+            <TextBlock Text="Password: " Foreground="White" />
             <PasswordBox Name="PasswordTextBox" />
         </DockPanel>
         <Button Content="Log Me In"
