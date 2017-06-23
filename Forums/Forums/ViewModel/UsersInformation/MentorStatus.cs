@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel.UsersInformation
 {
+    [Serializable]
     public class MentorStatus
     {
         private Member m_Member;

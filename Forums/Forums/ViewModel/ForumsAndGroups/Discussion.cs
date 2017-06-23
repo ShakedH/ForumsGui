@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Discussion : ASubject
     {
         private static int index = 1;

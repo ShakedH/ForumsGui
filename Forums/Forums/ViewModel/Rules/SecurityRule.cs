@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel.Rules
 {
+    [Serializable]
     public class SecurityRule
     {
         private string m_Content;

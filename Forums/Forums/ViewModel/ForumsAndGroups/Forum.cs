@@ -6,22 +6,19 @@ using System.Windows;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class Forum
     {
         #region Static Methods & Fields
         private static List<Forum> AllForums = new List<Forum>();
-
-
         public static Forum GetForumByName(string forumName)
         {
             throw new NotImplementedException();
         }
-
         public static void AddForum(Forum forum)
         {
             throw new NotImplementedException();
         }
-
         public static List<Forum> getAllForums()
         {
             return AllForums;

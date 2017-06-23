@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class FriendsGroup
     {
         private Forum m_Forum;

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Forums.ViewModel.ForumsAndGroups
 {
+    [Serializable]
     public class SubForum
     {
         public Forum Forum { get; set; }

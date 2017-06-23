@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Forums.ViewModel.Logger
 {
+    [Serializable]
     public abstract class Logger
     {
         public void WriteToLogger(string eventinfo) { }

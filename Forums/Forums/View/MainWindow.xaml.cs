@@ -179,6 +179,9 @@ namespace Forums.View
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
 
+        }
     }
 }
