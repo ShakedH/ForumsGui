@@ -14,7 +14,7 @@ namespace Forums.ViewModel.Logger
         protected string FilePath;
         public void WriteToLogger(string eventinfo)
         {
-            using (StreamWriter writer = new StreamWriter(FilePath))
+            using (StreamWriter writer = new StreamWriter(FilePath, append: true))
             {
                 writer.WriteLine(string.Format("{0}: {1}", DateTime.Now, eventinfo));
             }

@@ -44,6 +44,7 @@ namespace Forums.View
             }
             catch (Exception ex)
             {
+                _mainWindow.CurrentForum.ForumErrorLogger.WriteToLogger(ex.Message);
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
