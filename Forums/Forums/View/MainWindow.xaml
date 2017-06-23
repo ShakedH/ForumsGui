@@ -99,7 +99,8 @@
                   SelectionChanged="SubForumsListView_SelectionChanged" />
         <TreeView Name="DiscussionsTreeView"
                   Style="{StaticResource ListViewStyle}"
-                  Visibility="Hidden">
+                  Visibility="Hidden"
+                  ItemsSource="{Binding CurrentSubForum.Discussions}">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type forumsAndGroups:Discussion}"
                                           ItemsSource="{Binding Messages}">

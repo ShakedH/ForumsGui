@@ -46,7 +46,6 @@ namespace Forums.View
                 GoBackButtonVisibility = value != null ? Visibility.Visible : Visibility.Hidden;
             }
         }
-        public Discussion CurrentDiscussion { get; set; }
         public Member CurrentMember
         {
             get { return _currentMember; }
@@ -57,7 +56,6 @@ namespace Forums.View
                 RegisteredUsersButtonEnabled = value != null && CurrentSubForum != null ? true : false;
             }
         }
-        public List<Message> CurrentMessage { get; set; }
         public bool RegisteredUsersButtonEnabled
         {
             get { return _registeredUsersButtonEnabled; }
@@ -143,8 +141,9 @@ namespace Forums.View
                     return;
                 SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
-                Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
-                DiscussionsTreeView.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                //Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
+                //DiscussionsTreeView.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                NotifyPropertyChanged("CurrentSubForum");
                 SubForumsListView.Visibility = Visibility.Hidden;
                 DiscussionsTreeView.Visibility = Visibility.Visible;
             }
@@ -152,6 +151,7 @@ namespace Forums.View
             {
                 CurrentForum.ForumErrorLogger.WriteToLogger(ex.Message);
                 System.Windows.Forms.MessageBox.Show(ex.Message);
+                SubForumsListView.UnselectAll();
             }
         }
 
