@@ -60,6 +60,7 @@
                 Grid.Column="3"
                 Grid.Row="7"
                 Grid.ColumnSpan="4"
-                Click="Create_Click" />
+                Click="Create_Click"
+                Style="{StaticResource CustomButton}" />
     </Grid>
 </Window>

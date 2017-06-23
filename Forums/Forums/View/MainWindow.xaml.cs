@@ -28,7 +28,7 @@ namespace Forums.View
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private const string currentForumPath = "CurrentForum.bin";
-        private bool _newDiscussionButtonEnabled;
+        private bool _registeredUsersButtonEnabled;
         private Visibility _newSubForumButtonVisibility = Visibility.Hidden;
         private Visibility _goBackButtonVisibility = Visibility.Hidden;
         private Member _currentMember;
@@ -42,7 +42,7 @@ namespace Forums.View
             set
             {
                 _currentSubForum = value;
-                NewDiscussionButtonEnabled = value != null && CurrentMember != null ? true : false;
+                RegisteredUsersButtonEnabled = value != null && CurrentMember != null ? true : false;
                 GoBackButtonVisibility = value != null ? Visibility.Visible : Visibility.Hidden;
             }
         }
@@ -54,14 +54,14 @@ namespace Forums.View
             {
                 _currentMember = value;
                 NewSubForumButtonVisibility = value != null && CurrentForum.IsManager(value.Username) ? Visibility.Visible : Visibility.Hidden;
-                NewDiscussionButtonEnabled = value != null && CurrentSubForum != null ? true : false;
+                RegisteredUsersButtonEnabled = value != null && CurrentSubForum != null ? true : false;
             }
         }
         public List<Message> CurrentMessage { get; set; }
-        public bool NewDiscussionButtonEnabled
+        public bool RegisteredUsersButtonEnabled
         {
-            get { return _newDiscussionButtonEnabled; }
-            set { _newDiscussionButtonEnabled = value; NotifyPropertyChanged("NewDiscussionButtonEnabled"); }
+            get { return _registeredUsersButtonEnabled; }
+            set { _registeredUsersButtonEnabled = value; NotifyPropertyChanged("NewDiscussionButtonEnabled"); }
         }
         public Visibility NewSubForumButtonVisibility
         {
