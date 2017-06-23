@@ -76,8 +76,8 @@ namespace Forums.View
         public MainWindow()
         {
             this.DataContext = this;
-            //LoadCurrentForum();
-            InitializeCurrentForum();
+            LoadCurrentForum();
+            //InitializeCurrentForum();
             InitializeComponent();
             UsernameTextBlock.Text = "Guest";
         }

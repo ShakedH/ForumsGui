@@ -66,13 +66,14 @@
                    Grid.RowSpan="8">
             <TextBlock Text="Reply Content:"
                        DockPanel.Dock="Top" />
-            <TextBox Name="ReplyTextBox" />
+            <TextBox Name="ReplyTextBox"
+                     TextWrapping="Wrap" />
         </DockPanel>
         <Button Content="Reply"
                 Grid.Column="6"
                 Grid.Row="13"
                 Grid.ColumnSpan="3"
-                Click="Button_Click" 
-                Style="{StaticResource CustomButton}"/>
+                Click="Button_Click"
+                Style="{StaticResource CustomButton}" />
     </Grid>
 </Window>
