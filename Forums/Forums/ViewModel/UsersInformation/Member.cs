@@ -82,6 +82,8 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public override bool Equals(object obj)
         {
+            if (obj == null || !(obj is Member))
+                return false;
             Member m = obj as Member;
             return Username == m.Username;
         }

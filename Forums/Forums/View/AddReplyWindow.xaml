@@ -67,7 +67,7 @@
             <TextBlock Text="Reply Content:"
                        DockPanel.Dock="Top" />
             <TextBox Name="ReplyTextBox"
-                     TextWrapping="Wrap" />
+                     TextWrapping="Wrap"/>
         </DockPanel>
         <Button Content="Reply"
                 Grid.Column="6"

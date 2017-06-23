@@ -47,7 +47,8 @@
                    Grid.ColumnSpan="7"
                    VerticalAlignment="Center">
             <TextBlock Text="Username: " />
-            <TextBox Name="UsernameTextBox" />
+            <TextBox Name="UsernameTextBox"
+                     TextWrapping="Wrap" />
         </DockPanel>
         <DockPanel Grid.Column="1"
                    Grid.Row="5"
