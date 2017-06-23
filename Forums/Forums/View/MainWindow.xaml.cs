@@ -3,7 +3,10 @@ using Forums.ViewModel.ForumsAndGroups;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,8 +27,7 @@ namespace Forums.View
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private SubForum _currentSubForum;
-        private Member _currentMember;
+        private string currentForumPath = "CurrentForum.bin";
 
         public event PropertyChangedEventHandler PropertyChanged;
         public Forum CurrentForum { get; set; }
@@ -37,6 +39,7 @@ namespace Forums.View
         public MainWindow()
         {
             this.DataContext = this;
+            //LoadCurrentForum();
             InitializeCurrentForum();
             InitializeComponent();
             UsernameTextBlock.Text = "Guest";
@@ -181,7 +184,25 @@ namespace Forums.View
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            SaveCurrentForum();
+        }
 
+        private void SaveCurrentForum()
+        {
+            using (Stream stream = new FileStream(currentForumPath, FileMode.Create))
+            {
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, CurrentForum);
+            }
+        }
+
+        private void LoadCurrentForum()
+        {
+            using (Stream stream = File.Open(currentForumPath, FileMode.Open))
+            {
+                IFormatter formatter = new BinaryFormatter();
+                CurrentForum = (Forum)formatter.Deserialize(stream);
+            }
         }
     }
 }
