@@ -54,6 +54,7 @@ namespace Forums.View
             {
                 _currentMember = value;
                 NewSubForumButtonVisibility = value != null && CurrentForum.IsManager(value.Username) ? Visibility.Visible : Visibility.Hidden;
+                NewDiscussionButtonEnabled = value != null && CurrentSubForum != null ? true : false;
             }
         }
         public List<Message> CurrentMessage { get; set; }
@@ -128,7 +129,7 @@ namespace Forums.View
             new OpenDiscussionWindow(this, CurrentSubForum.Topic).ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentSubForum = null;
             SubForumsListView.Visibility = Visibility.Visible;
@@ -186,7 +187,7 @@ namespace Forums.View
         {
             if (DiscussionsTreeView.SelectedItem == null || DiscussionsTreeView.SelectedItem is Discussion)
             {
-                System.Windows.Forms.MessageBox.Show("Please Select a message to reply to");
+                System.Windows.Forms.MessageBox.Show("Please select a message to reply to");
                 return;
             }
             new AddReplyWindow(this, (Message)DiscussionsTreeView.SelectedItem).Show();

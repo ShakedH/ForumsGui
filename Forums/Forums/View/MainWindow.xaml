@@ -121,6 +121,8 @@
                 Grid.Column="7"
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                Margin="0,30,0,10"
                 Content="Open New Discussion"
                 IsEnabled="{Binding NewDiscussionButtonEnabled}"
                 Click="CreateDiscussionButton_Click"
@@ -129,24 +131,26 @@
                 Grid.Column="11"
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                Margin="0,30,0,10"
                 Content="Open New Sub Forum"
                 Visibility="{Binding NewSubForumButtonVisibility}"
                 Click="CreateSubForumButton_Click"
                 Style="{StaticResource SignUpButton}" />
         <Button Name="ReplyButton"
                 Content="Reply"
-                Grid.Row="18"
-                Grid.Column="11"
-                Visibility="Hidden"
+                Grid.Column="13"
+                Grid.Row="6"
+                Margin="10,0,0,0"
                 Click="ReplyButton_Click"
+                IsEnabled="{Binding NewDiscussionButtonEnabled}"
                 Style="{StaticResource SignUpButton}" />
-
         <Button Grid.Column="6"
                 Grid.Row="6"
                 Style="{StaticResource SignUpButton}"
                 Margin="0,0,10,0"
                 Visibility="{Binding GoBackButtonVisibility}"
                 Content="Go Back"
-                Click="Button_Click" />
+                Click="GoBackButton_Click" />
     </Grid>
 </Window>
