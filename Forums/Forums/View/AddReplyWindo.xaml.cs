@@ -22,25 +22,33 @@ namespace Forums.View
     public partial class AddReplyWindow : Window
     {
 
-        Member replier;
-        Message messageToReplyTo;
-        public AddReplyWindow(Message msg, Member member)
+        private Message messageToReplyTo;
+        private MainWindow mainWindow;
+        public AddReplyWindow(MainWindow window, Message msg)
         {
             InitializeComponent();
-            this.replier = member;
             this.messageToReplyTo = msg;
             OriginalMessageBlock.Text = messageToReplyTo.Content;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ReplyTextBox.Text))
+            try
             {
-                System.Windows.Forms.MessageBox.Show("Please write your reply");
-                return;
+                if (string.IsNullOrEmpty(ReplyTextBox.Text))
+                {
+                    System.Windows.Forms.MessageBox.Show("Please write your reply");
+                    return;
+                }
+                messageToReplyTo.AddMessage(new Message(messageToReplyTo, mainWindow.CurrentMember, ReplyTextBox.Text));
+                Close();
             }
-            messageToReplyTo.AddMessage(new Message(messageToReplyTo, replier, ReplyTextBox.Text));
-            Close();
+            catch (Exception ex)
+            {
+                mainWindow.CurrentForum.ForumErrorLogger.WriteToLogger(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

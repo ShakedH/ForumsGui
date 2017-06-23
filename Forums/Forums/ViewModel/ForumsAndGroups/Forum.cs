@@ -31,8 +31,8 @@ namespace Forums.ViewModel.ForumsAndGroups
         public ObservableCollection<Message> DiscussionMessages { get; set; }
         public List<FriendsGroup> FriendsGroups { get; set; }
         public List<Complaint> Complaints { get; set; }
-        public EventLogger EventLogger { get; set; }
-        public ErrorLogger ErrorLogger { get; set; }
+        public EventLogger ForumEventLogger { get { return EventLogger.Instance; } }
+        public ErrorLogger ForumErrorLogger { get { return ErrorLogger.Instance; } }
         public Policy Policy { get; set; }
         public string Topic { get; set; }
 
@@ -44,13 +44,12 @@ namespace Forums.ViewModel.ForumsAndGroups
             DiscussionMessages = new ObservableCollection<Message>();
             FriendsGroups = new List<FriendsGroup>();
             Complaints = new List<Complaint>();
-            EventLogger = new EventLogger();
-            ErrorLogger = new ErrorLogger();
             ManagerStatus ms = new ManagerStatus(manager, this);
             ManagerStatus.Add(manager, ms);
             Members.Add(manager);
             Policy = policy;
             Topic = topic;
+            ForumEventLogger.WriteToLogger(string.Format("{0} Forum created By {1}", this.Topic, manager.Username));
         }
 
         #region Users methods
@@ -61,11 +60,13 @@ namespace Forums.ViewModel.ForumsAndGroups
                 ManagerStatus.Add(manager, new ManagerStatus(manager, this));
                 Members.Add(manager);
             }
+            ForumEventLogger.WriteToLogger(string.Format("{0} was added as manager to {1} forum", manager.Username, this.Topic));
         }
 
         public void AddMember(Member member)
         {
             Members.Add(member);
+            ForumEventLogger.WriteToLogger(string.Format("{0} was added as member to {1} forum", member.Username, this.Topic));
         }
 
         public Member GetMember(string name)
@@ -75,6 +76,7 @@ namespace Forums.ViewModel.ForumsAndGroups
                 if (member.Username == name)
                     return member;
             }
+            ForumErrorLogger.WriteToLogger(string.Format("Member {0} not found in Forum {1}!", name, Topic));
             throw new Exception(string.Format("Member {0} not found in Forum!", name));
         }
 
@@ -87,6 +89,7 @@ namespace Forums.ViewModel.ForumsAndGroups
                     return manager;
                 }
             }
+            ForumErrorLogger.WriteToLogger(string.Format("Manager {0} not found in Forum {1}!", username, Topic));
             throw new Exception(string.Format("Manager {0} not found in Forum!", username));
         }
 
@@ -142,6 +145,7 @@ namespace Forums.ViewModel.ForumsAndGroups
         public void AddSubForum(SubForum subForum)
         {
             SubForums.Add(subForum);
+            ForumEventLogger.WriteToLogger(string.Format("Sub-Forum {0} was added to {1} forum", subForum.Topic, Topic));
         }
 
         public void CreateSubForum(string topic, string username)
@@ -195,6 +199,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             Discussion dis = sf.CreateDiscussion(topic, member, content);
             Message msg = dis.GetOpenMessage();
             member.AddMessage(msg);
+            ForumEventLogger.WriteToLogger(string.Format("Discussion {0} was added to sub-forum {1}", topic, subForumTopic));
         }
 
         public void ReplyToMessage(Discussion discussion, SubForum subForum, Message message, Member member, string content)
@@ -202,6 +207,7 @@ namespace Forums.ViewModel.ForumsAndGroups
             Message replyMsg = subForum.AddReplyMessage(discussion, member, content);
             member.AddMessage(replyMsg);
             message.AddMessage(replyMsg);
+            ForumEventLogger.WriteToLogger(string.Format("Reply {0} was added to message{1}", content, message.Content));
         }
 
         public Message GetMessageToReply(string subForumTopic, string discussionID, string messageID)

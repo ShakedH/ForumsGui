@@ -106,6 +106,7 @@ namespace Forums.View
             }
             catch (Exception ex)
             {
+                CurrentForum.ForumErrorLogger.WriteToLogger(ex.Message);
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
@@ -146,7 +147,7 @@ namespace Forums.View
                 System.Windows.Forms.MessageBox.Show("Please Select a message to reply to");
                 return;
             }
-            new AddReplyWindow((Message)DiscussionsTreeView.SelectedItem, CurrentMember).Show();
+            new AddReplyWindow(this, (Message)DiscussionsTreeView.SelectedItem).Show();
         }
     }
 }
