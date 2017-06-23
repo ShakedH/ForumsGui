@@ -82,6 +82,8 @@ namespace Forums.ViewModel.ForumsAndGroups
 
         public override bool Equals(object obj)
         {
+            if (obj == null || !(obj is Discussion))
+                return false;
             Discussion d = obj as Discussion;
             return ID == d.ID;
         }

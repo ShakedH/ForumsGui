@@ -42,6 +42,7 @@ namespace Forums.View
             set
             {
                 _currentSubForum = value;
+                NotifyPropertyChanged("CurrentSubForum");
                 RegisteredUsersButtonEnabled = value != null && CurrentMember != null ? true : false;
                 GoBackButtonVisibility = value != null ? Visibility.Visible : Visibility.Hidden;
             }
@@ -143,8 +144,6 @@ namespace Forums.View
                     return;
                 SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
-                Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
-                DiscussionsTreeView.SetBinding(ItemsControl.ItemsSourceProperty, b);
                 SubForumsListView.Visibility = Visibility.Hidden;
                 DiscussionsTreeView.Visibility = Visibility.Visible;
             }
