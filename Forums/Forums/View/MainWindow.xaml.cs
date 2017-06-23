@@ -80,6 +80,7 @@ namespace Forums.View
             //InitializeCurrentForum();
             InitializeComponent();
             UsernameTextBlock.Text = "Guest";
+            //this.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/mainwindowfood.jpg")));
         }
 
         // ToDo Delete this

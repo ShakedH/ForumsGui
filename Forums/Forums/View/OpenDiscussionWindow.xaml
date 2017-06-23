@@ -6,10 +6,17 @@
         xmlns:local="clr-namespace:Forums.View"
         mc:Ignorable="d"
         Title="Open New Discussion"
-        Height="600"
+        Height="450"
         Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush>
+            <ImageBrush.ImageSource>
+                <BitmapImage UriSource="/Images/replybackground.jpg"/>
+            </ImageBrush.ImageSource>
+        </ImageBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
@@ -47,10 +54,12 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Open New Discussion"
                    Grid.Row="1"
-                   Grid.Column="5"
-                   Grid.ColumnSpan="5"
+                   Grid.Column="4"
+                   Grid.ColumnSpan="6"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontSize="25"
                    FontWeight="SemiBold" />
         <TextBlock Name="SubForumTextBlock"
                    Grid.Row="1"
@@ -63,16 +72,17 @@
                    Grid.Row="3"
                    Grid.ColumnSpan="8"
                    VerticalAlignment="Center">
-            <TextBlock Text="Discussion Topic: " />
+            <TextBlock Text="Discussion Topic: "  Foreground="White"/>
             <TextBox Name="TopicTextBox"
                      TextWrapping="Wrap" />
         </DockPanel>
         <DockPanel Grid.Column="3"
-                   Grid.Row="5"
+                   Grid.Row="4"
                    Grid.ColumnSpan="8"
-                   Grid.RowSpan="7"
+                   Grid.RowSpan="4"
                    LastChildFill="True">
             <TextBlock Text="What's on your mind?: "
+                       Foreground="White"
                        DockPanel.Dock="Top" />
             <TextBox Name="ContentTextBox"
                      TextWrapping="Wrap" />
