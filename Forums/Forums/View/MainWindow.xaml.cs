@@ -132,6 +132,7 @@ namespace Forums.View
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentSubForum = null;
+            SubForumsListView.UnselectAll();
             SubForumsListView.Visibility = Visibility.Visible;
             DiscussionsTreeView.Visibility = Visibility.Hidden;
         }
@@ -140,6 +141,8 @@ namespace Forums.View
         {
             try
             {
+                if (e.AddedItems.Count == 0)    // Case of 'UnselectAll()' in 'GoBackButton_Click' method
+                    return;
                 SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
                 Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
@@ -154,10 +157,18 @@ namespace Forums.View
             }
         }
 
-        private void NotifyPropertyChanged(string propName)
+        private void ReplyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            try
+            {
+                if (DiscussionsTreeView.SelectedItem == null || DiscussionsTreeView.SelectedItem is Discussion)
+                    throw new Exception("Please select a message to reply to");
+                new AddReplyWindow(this, (Message)DiscussionsTreeView.SelectedItem).Show();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -183,14 +194,10 @@ namespace Forums.View
             }
         }
 
-        private void ReplyButton_Click(object sender, RoutedEventArgs e)
+        private void NotifyPropertyChanged(string propName)
         {
-            if (DiscussionsTreeView.SelectedItem == null || DiscussionsTreeView.SelectedItem is Discussion)
-            {
-                System.Windows.Forms.MessageBox.Show("Please select a message to reply to");
-                return;
-            }
-            new AddReplyWindow(this, (Message)DiscussionsTreeView.SelectedItem).Show();
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 }
