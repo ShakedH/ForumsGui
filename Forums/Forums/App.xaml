@@ -60,13 +60,20 @@
             <Setter Property="VerticalAlignment"
                     Value="Center" />
             <Setter Property="FontWeight"
-                    Value="SemiBold" />
+                    Value="ExtraBold" />
             <Setter Property="TextWrapping"
                     Value="Wrap" />
             <Setter Property="FontSize"
-                    Value="16" />
+                    Value="20" />
             <Setter Property="Foreground"
                     Value="White" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="0"
+                                      BlurRadius="1"
+                                      Color="Black" />
+                </Setter.Value>
+            </Setter>
         </Style>
 
 

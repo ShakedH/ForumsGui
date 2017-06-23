@@ -16,7 +16,7 @@
     <Window.Background>
         <ImageBrush>
             <ImageBrush.ImageSource>
-                <BitmapImage UriSource="/Images/mainwindowfood.jpg"/>
+                <BitmapImage UriSource="/Images/mainwindowfood.jpg" />
             </ImageBrush.ImageSource>
         </ImageBrush>
     </Window.Background>
@@ -146,18 +146,17 @@
         <Button Name="CreateDiscussionButton"
                 Grid.Column="13"
                 Grid.Row="12"
-                Grid.ColumnSpan="4"
-                Margin="10.4,1.8,61.8,0.4"
+                Grid.ColumnSpan="3"
+                Margin="10,0,0,0"
                 Content="Open New Discussion"
                 IsEnabled="{Binding RegisteredUsersButtonEnabled}"
                 Click="CreateDiscussionButton_Click"
                 Style="{StaticResource CustomButton}" />
         <Button Name="CreateSubForumButton"
-                Grid.Column="3"
+                Grid.Column="4"
                 Grid.Row="12"
-                Grid.ColumnSpan="4"
-                Grid.RowSpan="2"
-                Margin="61.8,14.8,9.8,24.8"
+                Grid.ColumnSpan="3"
+                Margin="0,0,10,0"
                 Content="Open New Sub Forum"
                 Visibility="{Binding NewSubForumButtonVisibility}"
                 Click="CreateSubForumButton_Click"
@@ -166,16 +165,16 @@
                 Content="Reply"
                 Grid.Column="13"
                 Grid.Row="10"
-                Grid.ColumnSpan="4"
-                Margin="10.4,0,71.8,0"
+                Grid.ColumnSpan="3"
+                Margin="10,0,0,0"
                 Click="ReplyButton_Click"
                 IsEnabled="{Binding RegisteredUsersButtonEnabled}"
-                Style="{StaticResource CustomButton}" Height="38" VerticalAlignment="Bottom" />
+                Style="{StaticResource CustomButton}" />
         <Button Grid.Column="4"
                 Grid.Row="10"
                 Grid.ColumnSpan="3"
                 Style="{StaticResource CustomButton}"
-                Margin="30.6,0.4,49.8,0"
+                Margin="30,0,50,0"
                 Visibility="{Binding GoBackButtonVisibility}"
                 Content="Go Back"
                 Click="GoBackButton_Click" />
