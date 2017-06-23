@@ -26,6 +26,7 @@ namespace Forums.View
         private MainWindow mainWindow;
         public AddReplyWindow(MainWindow window, Message msg)
         {
+            mainWindow = window;
             InitializeComponent();
             this.messageToReplyTo = msg;
             OriginalMessageBlock.Text = messageToReplyTo.Content;
