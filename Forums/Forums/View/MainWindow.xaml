@@ -112,10 +112,12 @@
                     <StackPanel>
                         <TextBlock Style="{StaticResource Message}"
                                    Text="{Binding Content}"
-                                   TextWrapping="Wrap" />
+                                   TextWrapping="Wrap"
+                                   MaxWidth="{Binding ElementName=DiscussionsTreeView,Path=ActualWidth}" />
                         <TextBlock Style="{StaticResource MessageAuthor}"
                                    TextWrapping="Wrap"
-                                   Text="{Binding PublishedBy.Username,StringFormat='Published By: {0}'}" />
+                                   Text="{Binding PublishedBy.Username,StringFormat='Published By: {0}'}"
+                                   MaxWidth="{Binding ElementName=DiscussionsTreeView,Path=ActualWidth}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>

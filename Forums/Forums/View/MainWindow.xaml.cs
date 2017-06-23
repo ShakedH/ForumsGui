@@ -82,6 +82,7 @@ namespace Forums.View
             UsernameTextBlock.Text = "Guest";
         }
 
+        // ToDo Delete this
         private void InitializeCurrentForum()
         {
             Member grandManager = new Member("a", "a", CurrentForum);
