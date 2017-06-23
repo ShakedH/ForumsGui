@@ -42,6 +42,7 @@ namespace Forums.View
             set
             {
                 _currentSubForum = value;
+                NotifyPropertyChanged("CurrentSubForum");
                 RegisteredUsersButtonEnabled = value != null && CurrentMember != null ? true : false;
                 GoBackButtonVisibility = value != null ? Visibility.Visible : Visibility.Hidden;
             }
@@ -59,7 +60,7 @@ namespace Forums.View
         public bool RegisteredUsersButtonEnabled
         {
             get { return _registeredUsersButtonEnabled; }
-            set { _registeredUsersButtonEnabled = value; NotifyPropertyChanged("NewDiscussionButtonEnabled"); }
+            set { _registeredUsersButtonEnabled = value; NotifyPropertyChanged("RegisteredUsersButtonEnabled"); }
         }
         public Visibility NewSubForumButtonVisibility
         {
@@ -141,9 +142,6 @@ namespace Forums.View
                     return;
                 SubForum selectedSubForum = e.AddedItems[0] as SubForum;
                 CurrentSubForum = CurrentForum.GetSubForum(selectedSubForum.Topic);
-                //Binding b = new Binding("CurrentSubForum.Discussions") { Source = this };
-                //DiscussionsTreeView.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                NotifyPropertyChanged("CurrentSubForum");
                 SubForumsListView.Visibility = Visibility.Hidden;
                 DiscussionsTreeView.Visibility = Visibility.Visible;
             }
