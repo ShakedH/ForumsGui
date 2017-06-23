@@ -107,9 +107,11 @@
                     Value="True" />
             <Setter Property="Cursor"
                     Value="Hand" />
+            <Setter Property="Background"
+                    Value="Wheat" />
         </Style>
-        
-        
+
+
         <Style TargetType="TextBlock"
                x:Key="DiscussionTopic">
             <Setter Property="FontWeight"
@@ -121,15 +123,15 @@
             <Setter Property="Margin"
                     Value="0,0,0,5" />
         </Style>
-        
-        
+
+
         <Style TargetType="TextBlock"
                x:Key="Message">
             <Setter Property="FontSize"
                     Value="14" />
         </Style>
-        
-        
+
+
         <Style TargetType="TextBlock"
                x:Key="MessageAuthor">
             <Setter Property="Foreground"
