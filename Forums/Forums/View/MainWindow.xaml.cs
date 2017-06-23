@@ -158,27 +158,20 @@ namespace Forums.View
 
         private void LoadCurrentForum()
         {
-            try
+            string currentLocation = Environment.CurrentDirectory;
+            string fileName = "CurrentForum.bin";
+            while (!File.Exists(currentLocation + @"\" + fileName))
             {
-                string currentLocation = Environment.CurrentDirectory;
-                string fileName = "CurrentForum.bin";
-                while (!File.Exists(currentLocation + @"\" + fileName))
-                {
-                    currentLocation = Directory.GetParent(currentLocation).FullName;
-                    if (currentLocation == null)
-                        throw new Exception($"File {fileName} not found");
-                }
-                _currentForumPath = currentLocation + @"\" + fileName;
-
-                using (Stream stream = File.Open(_currentForumPath, FileMode.Open))
-                {
-                    IFormatter formatter = new BinaryFormatter();
-                    CurrentForum = (Forum)formatter.Deserialize(stream);
-                }
+                currentLocation = Directory.GetParent(currentLocation).FullName;
+                if (currentLocation == null)
+                    throw new Exception($"File {fileName} not found");
             }
-            catch (Exception ex)
+            _currentForumPath = currentLocation + @"\" + fileName;
+
+            using (Stream stream = File.Open(_currentForumPath, FileMode.Open))
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                IFormatter formatter = new BinaryFormatter();
+                CurrentForum = (Forum)formatter.Deserialize(stream);
             }
         }
 
