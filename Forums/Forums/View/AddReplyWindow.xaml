@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forums.View"
         mc:Ignorable="d"
-        Title="ReplyToMessage"
-        Height="300"
-        Width="300">
+        Title="Reply To Message"
+        Height="600"
+        Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
-        <!--aaa-->
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -32,40 +38,41 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
         <TextBlock Text="Reply To Message"
                    Grid.Row="1"
-                   Grid.Column="2"
-                   Grid.ColumnSpan="6"
+                   Grid.Column="6"
+                   Grid.ColumnSpan="3"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontWeight="SemiBold"
                    TextWrapping="Wrap" />
-            <TextBlock Text="Replying To Message: "
-                   Grid.Column="1"
+        <DockPanel Grid.Column="2"
                    Grid.Row="2"
-                   Grid.RowSpan="2"
-                   Grid.ColumnSpan="7" />
-            <TextBlock Name="OriginalMessageBlock"
-                   Grid.Column="1"
-                   Grid.Row="3"
-                   Grid.ColumnSpan="7" />
-        <TextBlock Text="Reply Content:"
-                   VerticalAlignment="Top"
-                   Grid.Column="1"
+                   Grid.ColumnSpan="10"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Replying To Message: " />
+            <TextBlock Name="OriginalMessageBlock" />
+        </DockPanel>
+        <DockPanel Grid.Column="2"
                    Grid.Row="4"
-                   Grid.ColumnSpan="7" />
-        <TextBox Name="ReplyTextBox"
-                 Grid.RowSpan="2"
-                 TextWrapping="Wrap"
-                 Grid.Column="1"
-                 Grid.Row="5"
-                 Grid.ColumnSpan="7" />
-        <Button Content="Submit"
-                Grid.Column="3"
-                Grid.Row="8"
-                Grid.ColumnSpan="4"
-                Click="Button_Click" />
+                   Grid.ColumnSpan="10"
+                   Grid.RowSpan="8">
+            <TextBlock Text="Reply Content:"
+                       DockPanel.Dock="Top" />
+            <TextBox Name="ReplyTextBox" />
+        </DockPanel>
+        <Button Content="Reply"
+                Grid.Column="6"
+                Grid.Row="13"
+                Grid.ColumnSpan="3"
+                Click="Button_Click" 
+                Style="{StaticResource CustomButton}"/>
     </Grid>
 </Window>

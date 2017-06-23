@@ -80,6 +80,6 @@
                 Grid.Row="13"
                 Grid.ColumnSpan="3"
                 Click="Create_Click"
-                Style="{StaticResource SignUpButton}" />
+                Style="{StaticResource CustomButton}" />
     </Grid>
 </Window>
