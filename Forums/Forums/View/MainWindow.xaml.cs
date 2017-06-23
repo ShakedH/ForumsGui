@@ -86,27 +86,25 @@ namespace Forums.View
         private void InitializeCurrentForum()
         {
             Member grandManager = new Member("a", "a", CurrentForum);
+            Member anotherManager = new Member("admin", "admin", CurrentForum);
             CurrentForum = new Forum(grandManager, null, "Food");
             grandManager.SetAsManager(CurrentForum);
+            anotherManager.SetAsManager(CurrentForum);
             CurrentForum.CreateSubForum("Italian Cuisine", grandManager.Username);
             CurrentForum.CreateSubForum("Israeli Cuisine", grandManager.Username);
-            CurrentForum.CreateSubForum("Spanish Cuisine", grandManager.Username);
-            CurrentForum.CreateSubForum("Kosher Cuisine", grandManager.Username);
-            CurrentForum.CreateSubForum("Arabic Cuisine", grandManager.Username);
-            CurrentForum.CreateSubForum("General Diet", grandManager.Username);
-            CurrentForum.CreateSubForum("Vegetarian Diet", grandManager.Username);
-            CurrentForum.CreateSubForum("Vegan Diet", grandManager.Username);
+            CurrentForum.CreateSubForum("Spanish Cuisine", anotherManager.Username);
             SubForum testSF = CurrentForum.GetSubForum("Italian Cuisine");
-            testSF.CreateDiscussion("Test Discussion 1", grandManager, "This is an opening message 1");
-            testSF.CreateDiscussion("Test Discussion 2", grandManager, "This is an opening message 2");
-            testSF.CreateDiscussion("Test Discussion 3", grandManager, "This is an opening message 3");
-            testSF.CreateDiscussion("Test Discussion 4", grandManager, "This is an opening message 4");
-            testSF.CreateDiscussion("Test Discussion 5", grandManager, "This is an opening message 5");
-            Discussion testDiscussion = testSF.GetDiscussion(0);
-            Message OnePointOne = new Message(testDiscussion, grandManager, "This is reply message 1.1");
-            testDiscussion.GetOpenMessage().AddMessage(OnePointOne);
-            testDiscussion.GetOpenMessage().AddMessage(new Message(testDiscussion, grandManager, "This is reply message 1.2"));
-            OnePointOne.AddMessage(new Message(testDiscussion, grandManager, "This is reply message 1.1.1"));
+            testSF.CreateDiscussion("Pasta", grandManager, "Welcome! Let me hear your pasta recipes");
+            testSF.CreateDiscussion("Wine", grandManager, "Welcome! Let me hear about your favorite wines");
+            testSF.CreateDiscussion("Coffee", grandManager, "Welcome! Let me hear about espressos");
+            testSF = CurrentForum.GetSubForum("Israeli Cuisine");
+            testSF.CreateDiscussion("Falafel", grandManager, "Welcome! Let me hear your favorite falafel stands");
+            testSF.CreateDiscussion("Hummus", grandManager, "Welcome! Let me hear about your favorite hummus toppings");
+            testSF.CreateDiscussion("Burekas", grandManager, "Welcome! Let me hear the best burekas fillings");
+            testSF = CurrentForum.GetSubForum("Spanish Cuisine");
+            testSF.CreateDiscussion("Alfajores", grandManager, "Welcome! Let me hear how to make alfajores");
+            testSF.CreateDiscussion("Currhos", grandManager, "Welcome! Let me hear how to make Churros");
+            testSF.CreateDiscussion("Flan", grandManager, "Welcome! Let me hear how to make Flan");
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
