@@ -42,7 +42,10 @@ namespace Forums.View
                 Close();
             }
             else
+            {
+                _mainWindow.CurrentForum.ForumErrorLogger.WriteToLogger(string.Format("Faild Login. Username: {0}, Password: {1}", username, password));
                 System.Windows.Forms.MessageBox.Show("Username or password are incorrect.");
+            }
         }
     }
 }
