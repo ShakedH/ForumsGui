@@ -101,6 +101,14 @@
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Style="{StaticResource HelloUserText}" />
+        <TextBlock Name="SubForumsSubHeadLine"
+                   Text="Sub-Forums"
+                   Style="{StaticResource SubHeadLine}"
+                   Visibility="{Binding ElementName=SubForumsListView, Path=Visibility}" />
+        <TextBlock Name="DiscussionsSubHeadLine"
+                   Text="{Binding CurrentSubForum.Topic,StringFormat='Discussions in {0}'}"
+                   Style="{StaticResource SubHeadLine}"
+                   Visibility="{Binding ElementName=DiscussionsTreeView, Path=Visibility}" />
         <ListView Name="SubForumsListView"
                   Style="{StaticResource ListViewStyle}"
                   ItemsSource="{Binding CurrentForum.SubForums}"
